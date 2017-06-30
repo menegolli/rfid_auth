@@ -1,42 +1,13 @@
-vcom fd.vhd
-vcom fd_generic.vhd
-vcom flatch.vhd
-vcom flatch_generic.vhd
-vcom counter4.vhd
-vcom counter16.vhd
-vcom countern.vhd
-vcom fd.vhd
-vcom fd_generic.vhd
-vcom registerfile.vhd
-vcom shift_reg12.vhd
-
-vcom uart_clock_gen.vhd
-vcom uart_fsm.vhd
-vcom uart_peripheral.vhd
-vcom uart_controller.vhd
-vcom tag_mem.vhd
-vcom pwm.vhd
-vcom rfid_processor.vhd
-vcom rfid_auth.vhd
-
-
-
-
-
-#-----old stuff
-#vcom 000-globals.vhd
-#vcom a.b-DataPath.core/a.b.a-ALU.vhd
-#vcom a.b-DataPath.core/a.b.b-fd_generic.core/a.b.b.a-fd.vhd
-#vcom a.b-DataPath.core/a.b.b-fd_generic.vhd
-#vcom a.b-DataPath.core/a.b.c-registerfile.vhd
-#vcom a.b-DataPath.core/a.b.d-mux21_generic.core/a.b.d.a-mux21.core/a.b.d.a.a-iv.vhd
-#vcom a.b-DataPath.core/a.b.d-mux21_generic.core/a.b.d.a-mux21.core/a.b.d.a.b-nd2.vhd
-#vcom a.b-DataPath.core/a.b.d-mux21_generic.core/a.b.d.a-mux21.vhd
-#vcom a.b-DataPath.core/a.b.d-mux21_generic.vhd
-#vcom a.b-DataPath.vhd
-#vcom a.d-dataram.vhd
-#vcom a.a-CU_FSM.vhd
-#vcom a.c-IRAM.vhd
-#vcom a-DLX.vhd
-#vcom test_bench/TB_DLX.vhd
-#vcom test_bench/tb_alu.vhd
+vcom ../src/counter4.vhd
+vcom ../src/counter16.vhd
+vcom ../src/countern.vhd
+vcom ../src/registerfile.vhd
+vcom ../src/shift_reg12.vhd
+vcom ../src/uart_clock_gen.vhd
+vcom ../src/uart_fsm.vhd
+vcom ../src/uart_peripheral.vhd
+vcom ../src/uart_controller.vhd
+vcom ../src/tag_mem.vhd
+vcom ../src/pwm.vhd
+vcom ../src/rfid_processor.vhd
+vcom ../src/rfid_auth.vhd

@@ -1,7 +1,7 @@
 source ./compile.scr
 
-vcom signal_generator.vhd
-vcom tester.vhd
+vcom ../src/signal_generator.vhd
+vcom ../src/tester.vhd
 
 vsim -t 1ns tester
 

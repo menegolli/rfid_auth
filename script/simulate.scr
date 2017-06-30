@@ -1,0 +1,77 @@
+source ./compile.scr
+
+vcom signal_generator.vhd
+vcom tester.vhd
+
+vsim -t 1ns tester
+
+# add wave *
+add wave tester/rfid_a/*
+#add wave tester/rfid_a/uart_contr/*
+
+
+# add wave tester/rfid_a/rfid_p/tc_char_in
+# add wave tester/rfid_a/rfid_p/uart_data
+
+
+#add wave tester/rfid_a/uart_contr/*
+#add wave tester/rfid_a/uart_contr/uart_line
+#add wave tester/rfid_a/uart_contr/enable_reader
+#add wave tester/rfid_a/uart_contr/data_out_contr
+#add wave tester/rfid_a/uart_contr/data_debug
+#add wave tester/rfid_a/uart_contr/uart_clock_out
+#add wave tester/rfid_a/uart_contr/tc_char_out
+
+add wave tester/rfid_a/uart_contr/periph/uart_line
+add wave tester/rfid_a/uart_contr/periph/enable_reader
+
+#add wave tester/rfid_a/uart_contr/periph/uart_clock_out
+add wave tester/rfid_a/uart_contr/periph/ucg/*
+add wave tester/rfid_a/uart_contr/periph/ucg/c16/*
+
+add wave tester/rfid_a/uart_contr/periph/fsm/*
+
+add wave tester/rfid_a/uart_contr/periph/c4/*
+add wave tester/rfid_a/uart_contr/periph/s12/*
+
+add wave tester/rfid_a/rfid_p/*
+
+# add wave tester/rfid_a/pwm_clk_gen/*
+
+add wave tester/rfid_a/my_pwm/*
+
+add wave tester/rfid_a/rfid_p/rf/*
+# add wave tester/rfid_a/rfid_p/my_proc/*
+# add wave tester/rfid_a/rfid_p/unprocesso/*
+# add wave tester/rfid_a/rfid_p/check_proc/*
+#run 500 us
+#run 2 ms
+# run 3 ms
+run 5 ms
+# run 10 ms
+
+
+
+
+
+
+
+
+#source ./compile.scr
+
+#vcom test_bench/tb_alu.vhd
+
+#vsim -t 10ps work.tb_dlx
+#add wave *
+#add wave /U1/*
+#add wave /U1/PC
+#add wave /U1/IR
+#add wave /U1/PC_BUS
+#add wave /U1/datapath/*
+#add wave /U1/datapath/rf/REGISTERS
+#add wave /U1/datapath/dram/REGISTERS
+#add wave /U1/datapath/rf/*
+#add wave /U1/datapath/alu_inst/*
+#add wave /U1/CU_I/*
+#run 85 ns
+#radix -hexadecimal

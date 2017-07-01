@@ -379,7 +379,7 @@ begin
 				end if ;
 
 				enable_check_proc <='0';
-				pwm_en <= '0';
+				pwm_en <= '1';
 				led_idle <= '0';
 				led_grant <= '1';
 				led_denied <= '0';
@@ -398,7 +398,7 @@ begin
 				WR <= '0';
 				--RD1 <='0';
 				--enable_mem <='0';
-				pwm_en <= '1';
+				pwm_en <= '0';
 				if (index_check >= tag_size) then
 					--next_state <= RESETTING;
 					next_state <= ACCESS_DENIED;

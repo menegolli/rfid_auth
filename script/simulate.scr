@@ -38,7 +38,10 @@ add wave tester/rfid_a/rfid_p/*
 
 # add wave tester/rfid_a/pwm_clk_gen/*
 
-add wave tester/rfid_a/my_pwm/*
+# add wave tester/rfid_a/my_pwm/*
+add wave tester/rfid_a/red_pwm/*
+add wave tester/rfid_a/green_pwm/*
+add wave tester/rfid_a/blue_pwm/*
 
 add wave tester/rfid_a/rfid_p/rf/*
 # add wave tester/rfid_a/rfid_p/my_proc/*

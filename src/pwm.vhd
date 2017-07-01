@@ -70,7 +70,8 @@ begin
 		n => n -- determine which value to apply
 	)
 	port map(
-		clock 		=> pwm_clk,
+		--clock 		=> pwm_clk,
+		clock 		=> clk_sys,
 		reset 		=> reset,
 		--reset 		=> not(tc),
 		enable 		=> enable,
@@ -84,8 +85,8 @@ begin
 		clock 		=> clk_sys,
 		reset		=> reset,
 		clear		=> '1',
-		end_val		=> "0000010000000000",--1024 as divider
-		--end_val		=> "0000000100000000",-- as divider
+		--end_val		=> "0000010000000000",--1024 as divider
+		end_val		=> "0000000100000000",-- as divider
 		uart_clock 	=> pwm_clk
 	);
 
@@ -94,8 +95,8 @@ begin
 		n => n -- determine which value to apply
 	)
 	port map(
-		--clock 		=> pwm_clk,
-		clock 		=> clk_sys,
+		clock 		=> pwm_clk,
+		--clock 		=> clk_sys,
 		reset 		=> reset,
 		--reset 		=> not(tc),
 		enable 		=> enable,

@@ -399,7 +399,7 @@ begin
 				WR <= '0';
 				--RD1 <='0';
 				--enable_mem <='0';
-				pwm_en <= '0';
+				pwm_en <= '1';
 				if (index_check >= tag_size) then
 					--next_state <= RESETTING;
 					next_state <= ACCESS_DENIED;

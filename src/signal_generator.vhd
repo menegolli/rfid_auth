@@ -118,12 +118,39 @@ BEGIN
 		wait for DATA_DELAY;
 		uart_line<='1';		--stop bit 2
 		
+		--wait for DATA_DELAY;
+		----3
+		--uart_line<='0';		--start bit
+		--wait for DATA_DELAY;
+		--uart_line<='0';
+		--wait for DATA_DELAY;
+		--uart_line<='1';
+		--wait for DATA_DELAY;
+		--uart_line<='1';
+		--wait for DATA_DELAY;
+		--uart_line<='0';
+		--wait for DATA_DELAY;
+		--uart_line<='1';
+		--wait for DATA_DELAY;
+		--uart_line<='0';
+		--wait for DATA_DELAY;
+		--uart_line<='1';
+		--wait for DATA_DELAY;
+		--uart_line<='0';
+		--wait for DATA_DELAY;
+		--uart_line<='1';		--stop bit 1
+		--wait for DATA_DELAY;
+		--uart_line<='1';		--stop bit 2
+		
 		wait for DATA_DELAY;
-		--3
+
+		----4 --- this should trigger ACCESS DENIED
 		uart_line<='0';		--start bit
 		wait for DATA_DELAY;
 		uart_line<='0';
 		wait for DATA_DELAY;
+		uart_line<='0';
+		wait for DATA_DELAY;
 		uart_line<='1';
 		wait for DATA_DELAY;
 		uart_line<='1';
@@ -135,300 +162,10 @@ BEGIN
 		uart_line<='0';
 		wait for DATA_DELAY;
 		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
 		wait for DATA_DELAY;
 		uart_line<='1';		--stop bit 1
 		wait for DATA_DELAY;
 		uart_line<='1';		--stop bit 2
-		
-		--wait for 30 us;
-		----4
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-		
-		--wait for 30 us;
-		----5
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-		
-		--wait for 30 us;
-		----6
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-		
-		--wait for 30 us;
-		----7
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-		
-		--wait for 30 us;
-		----8
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-		
-		--wait for 30 us;
-		----9
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-		
-		--wait for 30 us;
-		----10
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-		
-		--wait for 30 us;
-		----11
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-		
-		--wait for 30 us;
-		----12
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-		
-		--wait for 30 us;
-		----13
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-		
-		--wait for 30 us;
-		----14
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-		
-		--wait for 30 us;
-		----15
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
 		
 		wait;
 	end process uart;

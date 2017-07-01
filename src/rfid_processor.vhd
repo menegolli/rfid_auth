@@ -74,7 +74,6 @@ architecture arch of rfid_processor is
 	signal enable_check_proc : std_logic;
 
 	signal check_ended :std_logic;
-	signal all_16 : std_logic;
 	
 	signal tc_char_in_edge : std_logic;
 	signal tc_char_in_edge_set : std_logic;
@@ -201,7 +200,7 @@ begin
 
 
 
-	my_proc: process (current_state, next_state, tc_char_in, index_tc, check_ended, all_16)
+	my_proc: process (current_state, next_state, tc_char_in, index_tc, check_ended)
 	
 	begin
 
@@ -489,14 +488,12 @@ begin
 					index_check_cnt_enable <='0';
 					index_check_reset <='0';
 					RD1 <= '0';
-					all_16 <= '0';
 
 				when CHECK_ONE =>
 					check_ended <= '0';
 					index_check_cnt_enable <= '1';
 					index_check_reset <= '1';
 					RD1 <= '1';
-					all_16 <= '0';
 					next_state_check <= CHECK_ONE;
 
 					if index_check_tc = '1' then
@@ -519,10 +516,6 @@ begin
 					next_state_check <= RESETTING;
 					RD1 <= '0';
 
-					all_16 <= '1';
-				
-			
-
 				when DONE_CHECK_DENY =>	
 
 					check_ended <= '1';
@@ -530,32 +523,34 @@ begin
 					index_check_reset <= '1';
 					next_state_check <= RESETTING;
 					RD1 <= '0';
-					all_16 <= '0';
 				
 				when others =>
+				
 					next_state_check <= RESETTING;
 					check_ended <= '0';
 					index_check_cnt_enable <='0';
 					index_check_reset <='0';
 					RD1 <= '0';
-					all_16 <= '0';
-
-
 			end case ;
 		end if;
 	end process;
 
 
-	--comp_p :process (clk,tag_mem_out, rf_out)
-	comp_p :process (tag_mem_out, rf_out)
+	--comp_p :process (clk,reset_n)
+	--comp_p : process (tag_mem_out, rf_out)
+	comp_p : process (clk, reset_n, check_enable)
 	begin
-		--if clk'event and clk='0' then 
-			if (tag_mem_out = rf_out) then
-				check_ok <= '1';
-			else
-				check_ok <= '0';
+		if reset_n = '0' then
+			check_ok <= '0';
+		elsif check_enable = '1' then
+			if clk'event and clk='0' then 
+				if (tag_mem_out = rf_out) then
+					check_ok <= '1';
+				else
+					check_ok <= '0';
+				end if;
 			end if;
-		--end if;
+		end if;
 	end process;
 	
 	-- tc_char_in_edge_p : process (tc_char_in_edge_set, tc_char_in_edge_reset)

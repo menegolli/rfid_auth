@@ -405,7 +405,7 @@ begin
 				else
 					next_state <= ACCESS_DENIED;
 				end if ;
-				enable_check_proc <='1';
+				enable_check_proc <='0';
 				led_idle <= '0';
 				led_grant <= '0';
 				led_denied <= '1';
@@ -466,7 +466,7 @@ begin
 
 
 	check_proc: process (check_ok,current_state_check, next_state_check,
-		enable_check_proc, index_check_tc, rf_out, tag_mem_out)
+		enable_check_proc, index_check_tc)
 	--variable ok_var: std_logic;
 	begin
 		--check_ok <='0';
@@ -538,11 +538,11 @@ begin
 
 	--comp_p :process (clk,reset_n)
 	--comp_p : process (tag_mem_out, rf_out)
-	comp_p : process (clk, reset_n, check_enable)
+	comp_p : process (clk, reset_n, enable_check_proc)
 	begin
 		if reset_n = '0' then
 			check_ok <= '0';
-		elsif check_enable = '1' then
+		elsif enable_check_proc = '1' then
 			if clk'event and clk='0' then 
 				if (tag_mem_out = rf_out) then
 					check_ok <= '1';

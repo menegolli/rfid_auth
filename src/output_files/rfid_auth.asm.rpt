@@ -1,0 +1,91 @@
+Assembler report for rfid_auth
+Sat Jul 01 12:58:23 2017
+Quartus Prime Version 15.1.0 Build 185 10/21/2015 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Assembler Summary
+  3. Assembler Settings
+  4. Assembler Generated Files
+  5. Assembler Device Options: C:/Users/ed/rfid_auth/src/output_files/rfid_auth.sof
+  6. Assembler Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++---------------------------------------------------------------+
+; Assembler Summary                                             ;
++-----------------------+---------------------------------------+
+; Assembler Status      ; Successful - Sat Jul 01 12:58:23 2017 ;
+; Revision Name         ; rfid_auth                             ;
+; Top-level Entity Name ; rfid_auth                             ;
+; Family                ; Cyclone V                             ;
+; Device                ; 5CSEMA5F31C6                          ;
++-----------------------+---------------------------------------+
+
+
++----------------------------------+
+; Assembler Settings               ;
++--------+---------+---------------+
+; Option ; Setting ; Default Value ;
++--------+---------+---------------+
+
+
++------------------------------------------------------+
+; Assembler Generated Files                            ;
++------------------------------------------------------+
+; File Name                                            ;
++------------------------------------------------------+
+; C:/Users/ed/rfid_auth/src/output_files/rfid_auth.sof ;
++------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/ed/rfid_auth/src/output_files/rfid_auth.sof ;
++----------------+---------------------------------------------------------------+
+; Option         ; Setting                                                       ;
++----------------+---------------------------------------------------------------+
+; Device         ; 5CSEMA5F31C6                                                  ;
+; JTAG usercode  ; 0x00B34DA1                                                    ;
+; Checksum       ; 0x00B34DA1                                                    ;
++----------------+---------------------------------------------------------------+
+
+
++--------------------+
+; Assembler Messages ;
++--------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Assembler
+    Info: Version 15.1.0 Build 185 10/21/2015 SJ Lite Edition
+    Info: Processing started: Sat Jul 01 12:57:58 2017
+Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off rfid_auth -c rfid_auth
+Info (115030): Assembler is generating device programming files
+Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 873 megabytes
+    Info: Processing ended: Sat Jul 01 12:58:23 2017
+    Info: Elapsed time: 00:00:25
+    Info: Total CPU time (on all processors): 00:00:22
+
+

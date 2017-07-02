@@ -84,7 +84,8 @@ begin
 
 			when AFTER_TX =>
 				enable_cnt <= '0';
-				reset_cnt <= '0';
+				--reset_cnt <= '0';
+				reset_cnt <= '1';
 				shift_enable <= '0';
 				shift_reset <= '1'; 
 				waiting <= '0';
@@ -93,8 +94,8 @@ begin
 				
 
 			when others =>
-				enable_cnt <= '0';
-				--reset_cnt <= '1';
+				--enable_cnt <= '0';
+				reset_cnt <= '1';
 				reset_cnt <= '0';
 				shift_enable <= '0';
 				shift_reset <= '1'; 

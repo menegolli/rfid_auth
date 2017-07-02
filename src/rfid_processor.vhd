@@ -477,13 +477,16 @@ begin
 		--	check_ok <='0';
 		--end if;
 
-		if enable_check_proc ='1' then
 
 			case( current_state_check ) is
 			
 				when RESETTING =>
+					if enable_check_proc ='1' then
+						next_state_check <= CHECK_ONE;
+					else
+						next_state_check <= RESETTING;
+					end if;
 					check_ended <= '0';
-					next_state_check <= CHECK_ONE;
 					index_check_cnt_enable <='0';
 					index_check_reset <='0';
 					RD1 <= '0';
@@ -531,14 +534,14 @@ begin
 					index_check_reset <='0';
 					RD1 <= '0';
 			end case ;
-		else
-			index_check_reset <= '0';
-			check_ended <= '0';
-			index_check_cnt_enable <='0';
+		--else
+		--	index_check_reset <= '0';
+		--	check_ended <= '0';
+		--	index_check_cnt_enable <='0';
 
-			RD1 <= '0';
+		--	RD1 <= '0';
 		--	ADD_RD1 <= (others => '0');
-		end if;
+		--end if;
 	end process;
 
 

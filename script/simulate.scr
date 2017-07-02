@@ -52,9 +52,9 @@ add wave tester/rfid_a/rfid_p/rf/*
 # run 3 ms
 # run 5 ms
 # run 10 ms
-run 8 ms
+# run 8 ms
 
-
+run 18 ms
 
 
 

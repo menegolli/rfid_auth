@@ -47,7 +47,8 @@ begin
 
 			when UART_IDLE =>
 				enable_cnt <= '0';
-				reset_cnt <= '1';
+				--reset_cnt <= '1';
+				reset_cnt <= '0';
 				shift_enable <= '0'; 
 				shift_reset <= '0'; 
 				waiting <= '1';
@@ -93,7 +94,8 @@ begin
 
 			when others =>
 				enable_cnt <= '0';
-				reset_cnt <= '1';
+				--reset_cnt <= '1';
+				reset_cnt <= '0';
 				shift_enable <= '0';
 				shift_reset <= '1'; 
 				waiting <= '0';

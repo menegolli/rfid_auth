@@ -80,6 +80,7 @@ begin
 		port map(
 			clock		=> clock,
 			reset		=> reset,
+			--reset 		=> reset_cnt,
 			clear		=> reset_cnt,
 			end_val		=> divisor,
 			uart_clock 	=> uart_clock

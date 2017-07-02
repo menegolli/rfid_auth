@@ -35,9 +35,12 @@ BEGIN
 		rstn<='0';
 		wait for 2 us;
 		rstn<='1';
+		--wait;
+		wait for 5 ms;
+		rstn<='0';
+		wait for 2 us;
+		rstn <= '1';
 		wait;
-		--wait for 2 ms;
-		--rstn<='0';
 	
 	end process reset;
 

@@ -12,10 +12,10 @@ entity rfid_auth is
 		data_out 		: out std_logic_vector(7 downto 0);
 		--data_debug_out	: out std_logic_vector(11 downto 0);	--keep for debug purposes
 		--status_bit		: out std_logic;
-		--pwm_out 		: out std_logic;
-		red_pwm_out 		: out std_logic;
-		green_pwm_out 		: out std_logic;
-		blue_pwm_out 		: out std_logic;
+		pwm_out 		: out std_logic;
+		--red_pwm_out 		: out std_logic;
+		--green_pwm_out 		: out std_logic;
+		--blue_pwm_out 		: out std_logic;
 		led_idle		: out std_logic;
 		led_grant		: out std_logic;
 		led_denied		: out std_logic
@@ -150,7 +150,8 @@ begin
 		tag_mem_out 	=> tag_mem_out
 	);
 	
-	red_pwm: pwm
+
+	my_pwm: pwm
 	generic map(
 		n => 16
 	)
@@ -163,39 +164,54 @@ begin
 		--dc 			=> "0000000000001000",--8
 		--end_val 	=> "0000000010000000",--128
 		end_val 	=> "0000000000100000",--32
-		pwm_out 	=> red_pwm_out
+		pwm_out 	=> pwm_out
 	);
+	--red_pwm: pwm
+	--generic map(
+	--	n => 16
+	--)
+	--port map(
+	--	clk_sys		=> clock,
+	--	enable 		=> pwm_en,
+	--	reset 		=> reset_n,
+	--	--pwm_en 		=> pwm_en,
+	--	--dc 			=> "0000000001000000",--64
+	--	--dc 			=> "0000000000001000",--8
+	--	--end_val 	=> "0000000010000000",--128
+	--	end_val 	=> "0000000000100000",--32
+	--	pwm_out 	=> red_pwm_out
+	--);
 
-	green_pwm: pwm
-	generic map(
-		n => 16
-	)
-	port map(
-		clk_sys		=> clock,
-		enable 		=> pwm_en,
-		reset 		=> reset_n,
-		--pwm_en 		=> pwm_en,
-		--dc 			=> "0000000001000000",--64
-		--dc 			=> "0000000000001000",--8
-		--end_val 	=> "0000000010000000",--128
-		end_val 	=> "0000000001000000",--64
-		pwm_out 	=> green_pwm_out
-	);
+	--green_pwm: pwm
+	--generic map(
+	--	n => 16
+	--)
+	--port map(
+	--	clk_sys		=> clock,
+	--	enable 		=> pwm_en,
+	--	reset 		=> reset_n,
+	--	--pwm_en 		=> pwm_en,
+	--	--dc 			=> "0000000001000000",--64
+	--	--dc 			=> "0000000000001000",--8
+	--	--end_val 	=> "0000000010000000",--128
+	--	end_val 	=> "0000000001000000",--64
+	--	pwm_out 	=> green_pwm_out
+	--);
 
-	blue_pwm: pwm
-	generic map(
-		n => 16
-	)
-	port map(
-		clk_sys		=> clock,
-		enable 		=> pwm_en,
-		reset 		=> reset_n,
-		--pwm_en 		=> pwm_en,
-		--dc 			=> "0000000001000000",--64
-		--dc 			=> "0000000000001000",--8
-		end_val 	=> "0000000010000000",--128
-		pwm_out 	=> blue_pwm_out
-	);
+	--blue_pwm: pwm
+	--generic map(
+	--	n => 16
+	--)
+	--port map(
+	--	clk_sys		=> clock,
+	--	enable 		=> pwm_en,
+	--	reset 		=> reset_n,
+	--	--pwm_en 		=> pwm_en,
+	--	--dc 			=> "0000000001000000",--64
+	--	--dc 			=> "0000000000001000",--8
+	--	end_val 	=> "0000000010000000",--128
+	--	pwm_out 	=> blue_pwm_out
+	--);
 	
 	--uart_bits 		<= data;
 	--status_bit 		<= status;

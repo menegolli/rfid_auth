@@ -34,7 +34,8 @@ architecture behavior of tester is
 			--blue_pwm_out 		: out std_logic;
 			led_idle		: out std_logic;
 			led_grant		: out std_logic;
-			led_denied		: out std_logic
+			led_denied		: out std_logic;
+			check_ok_out	: out std_logic
 			--uart_clock_out	: out std_logic 						--keep for debug purposes
 		);
 	end component;
@@ -66,6 +67,7 @@ architecture behavior of tester is
 	signal led_grant : std_logic;
 	signal led_denied : std_logic;
 	signal led_idle : std_logic;
+	signal check_ok_out : std_logic;
 
 
 BEGIN
@@ -100,7 +102,8 @@ BEGIN
 			--blue_pwm_out 	=> blue_pwm_out,
 			led_idle		=> led_idle,
 			led_grant		=> led_grant,
-			led_denied		=> led_denied
+			led_denied		=> led_denied,
+			check_ok_out	=> check_ok_out
 			--uart_clock_out	=> uart_clock
 		);
 

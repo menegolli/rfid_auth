@@ -21,7 +21,8 @@ entity rfid_processor is
 		pwm_en				: OUT std_logic;
 		led_idle			: OUT std_logic;
 		led_grant			: OUT std_logic;
-		led_denied			: OUT std_logic;		
+		led_denied			: OUT std_logic;	
+		check_ok_out		: OUT std_logic;	
 		tag_mem_out			: in std_logic_vector(7 downto 0)
 	);
 end entity rfid_processor;
@@ -116,7 +117,7 @@ begin
 	enable_mem <=RD1;
 	ADD_RD1 <= index_check;
 	ADD_WR <= index;
-
+	check_ok_out <= check_ok;
 
 	rf: register_file
 	generic map(
@@ -476,8 +477,6 @@ begin
 		--	check_ok <='0';
 		--end if;
 
-
-
 		if enable_check_proc ='1' then
 
 			case( current_state_check ) is
@@ -532,6 +531,9 @@ begin
 					index_check_reset <='0';
 					RD1 <= '0';
 			end case ;
+		--else
+		--	RD1 <= '0';
+		--	ADD_RD1 <= (others => '0');
 		end if;
 	end process;
 

@@ -22,7 +22,8 @@ entity rfid_processor is
 		led_idle			: OUT std_logic;
 		led_grant			: OUT std_logic;
 		led_denied			: OUT std_logic;	
-		check_ok_out		: OUT std_logic;	
+		check_ok_out		: OUT std_logic;
+		check_button		: in std_logic;	
 		tag_mem_out			: in std_logic_vector(7 downto 0)
 	);
 end entity rfid_processor;
@@ -46,6 +47,7 @@ architecture arch of rfid_processor is
 		DONE_STORE_FOUR,
 		DONE_CHECK_GRANT,
 		DONE_CHECK_DENY,
+		WAIT_FOR_BUTTON,
 		LED_DEBUG
 		);
 
@@ -467,7 +469,7 @@ begin
 
 
 	check_proc: process (check_ok,current_state_check, next_state_check,
-		enable_check_proc, index_check_tc)
+		enable_check_proc, index_check_tc, check_button)
 	--variable ok_var: std_logic;
 	begin
 		--check_ok <='0';
@@ -496,7 +498,8 @@ begin
 					index_check_cnt_enable <= '1';
 					index_check_reset <= '1';
 					RD1 <= '1';
-					next_state_check <= CHECK_ONE;
+
+					--next_state_check <= CHECK_ONE;
 
 					if index_check_tc = '1' then
 						if check_ok = '1' then
@@ -507,8 +510,24 @@ begin
 					else
 						if check_ok = '0' then
 							next_state_check <= DONE_CHECK_DENY;
+						else
+							--next_state_check <= CHECK_ONE;
+							next_state_check <= WAIT_FOR_BUTTON;
 						end if;
 					end if;
+
+
+				when WAIT_FOR_BUTTON =>
+				
+					if check_button = '1' then
+						next_state_check <= WAIT_FOR_BUTTON;
+					else
+						next_state_check <= CHECK_ONE;
+					end if;
+					check_ended <= '0';
+					index_check_cnt_enable <='0';
+					index_check_reset <='0';
+					RD1 <= '0';
 
 				when DONE_CHECK_GRANT =>	
 

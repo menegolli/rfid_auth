@@ -14,7 +14,7 @@ add wave tester/rfid_a/*
 # add wave tester/rfid_a/rfid_p/uart_data
 
 
-#add wave tester/rfid_a/uart_contr/*
+add wave tester/rfid_a/uart_contr/*
 #add wave tester/rfid_a/uart_contr/uart_line
 #add wave tester/rfid_a/uart_contr/enable_reader
 #add wave tester/rfid_a/uart_contr/data_out_contr

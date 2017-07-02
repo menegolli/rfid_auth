@@ -28,10 +28,10 @@ architecture behavior of tester is
 			data_out 		: out std_logic_vector(7 downto 0);
 			--data_debug_out	: out std_logic_vector(11 downto 0);	--keep for debug purposes
 			--status_bit		: out std_logic;
-			--pwm_out 		: out std_logic;
-			red_pwm_out 		: out std_logic;
-			green_pwm_out 		: out std_logic;
-			blue_pwm_out 		: out std_logic;
+			pwm_out 		: out std_logic;
+			--red_pwm_out 		: out std_logic;
+			--green_pwm_out 		: out std_logic;
+			--blue_pwm_out 		: out std_logic;
 			led_idle		: out std_logic;
 			led_grant		: out std_logic;
 			led_denied		: out std_logic
@@ -59,10 +59,10 @@ architecture behavior of tester is
 	signal data_debug_out: std_logic_vector(11 downto 0);
 
 	signal enable_reader: std_logic;
-	--signal pwm_out : std_logic;
-	signal red_pwm_out : std_logic;
-	signal green_pwm_out : std_logic;
-	signal blue_pwm_out : std_logic;
+	signal pwm_out : std_logic;
+	--signal red_pwm_out : std_logic;
+	--signal green_pwm_out : std_logic;
+	--signal blue_pwm_out : std_logic;
 	signal led_grant : std_logic;
 	signal led_denied : std_logic;
 	signal led_idle : std_logic;
@@ -94,10 +94,10 @@ BEGIN
 			data_out 		=> data_out,
 			--data_debug_out	=> data_debug_out,	--keep for debug purposes
 			--status_bit		=> status,
-			--pwm_out			=> pwm_out,
-			red_pwm_out 	=> red_pwm_out,
-			green_pwm_out	=> green_pwm_out,
-			blue_pwm_out 	=> blue_pwm_out,
+			pwm_out			=> pwm_out,
+			--red_pwm_out 	=> red_pwm_out,
+			--green_pwm_out	=> green_pwm_out,
+			--blue_pwm_out 	=> blue_pwm_out,
 			led_idle		=> led_idle,
 			led_grant		=> led_grant,
 			led_denied		=> led_denied

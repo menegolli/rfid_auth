@@ -99,7 +99,7 @@ architecture struct of rfid_auth is
 	signal enable_mem		: std_logic;
 	signal addr_read		: std_logic_vector(1 downto 0);
 	signal tag_mem_out		: std_logic_vector(7 downto 0);
-	signal pwm_clk 			: std_logic;
+	--signal pwm_clk 			: std_logic;
 	--signal pwm_out			: std_logic;
 	signal pwm_en 			: std_logic;
 	

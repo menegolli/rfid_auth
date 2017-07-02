@@ -28,10 +28,11 @@ architecture tag_mem_arch of tag_mem is
 	--01010110 -- reverse  01101010
 begin
 	--process (clk, addr, enable_mem)
-	process (addr, enable_mem)
+	--process (addr, enable_mem)
 	--process(enable_mem)
+	process(addr)
 	begin
-		if enable_mem = '1' then
+		--if enable_mem = '1' then
 			--if (clk = '1' and clk'event) then
 				case addr is
 					when "00" => tag_mem_out <= tag_char(0);
@@ -41,7 +42,7 @@ begin
 					when others => tag_mem_out <= "00000000";
 				end case;
 			--end if;
-		end if;
+		--end if;
 	end process;
 end architecture tag_mem_arch;
 

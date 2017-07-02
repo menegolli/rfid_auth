@@ -76,9 +76,9 @@ architecture arch of rfid_processor is
 
 	signal check_ended :std_logic;
 	
-	signal tc_char_in_edge : std_logic;
-	signal tc_char_in_edge_set : std_logic;
-	signal tc_char_in_edge_reset : std_logic;
+	--signal tc_char_in_edge : std_logic;
+	--signal tc_char_in_edge_set : std_logic;
+	--signal tc_char_in_edge_reset : std_logic;
 
 	component register_file is
 		generic(
@@ -209,7 +209,7 @@ begin
 			when RESETTING =>
 				index_cnt_enable <='0';
 				index_reset <='0';
-				tc_char_in_edge_reset <= '0';
+				--tc_char_in_edge_reset <= '0';
 				--index_check_cnt_enable <='0';
 				--index_check_reset <='0';
 
@@ -230,7 +230,7 @@ begin
 			when IDLE =>
 				index_cnt_enable <='0';
 				index_reset <='1';
-				tc_char_in_edge_reset <= '0';
+				--tc_char_in_edge_reset <= '0';
 				--index_check_cnt_enable <='0';
 				--index_check_reset <='1';
 
@@ -259,7 +259,7 @@ begin
 				--index_check_reset <='1';
 
 				
-				tc_char_in_edge_reset <= '1';
+				--tc_char_in_edge_reset <= '1';
 				WR <= '1';
 				--ADD_RD1 <= (others =>'0');
 				--RD1 <= '0';
@@ -279,7 +279,7 @@ begin
 			when DONE_STORE_ONE =>
 				index_cnt_enable <='0';
 				index_reset <='1';
-				tc_char_in_edge_reset <= '0';
+				--tc_char_in_edge_reset <= '0';
 				--index_check_cnt_enable <='0';
 				--index_check_reset <='1';
 
@@ -317,7 +317,7 @@ begin
 			when DONE_STORE_FOUR =>
 				index_cnt_enable <='0';
 				index_reset <='1';
-				tc_char_in_edge_reset <= '0';
+				--tc_char_in_edge_reset <= '0';
 				WR <= '0';
 				--if (index_tc = '0') then
 				--	next_state <= DONE_STORE_SIXTEEN;
@@ -335,7 +335,7 @@ begin
 				index_cnt_enable <='0';
 				index_reset <='1';
 				--index_check_reset <='1';
-				tc_char_in_edge_reset <= '0';
+				--tc_char_in_edge_reset <= '0';
 
 				--RD1 <='1';
 
@@ -362,7 +362,7 @@ begin
 			when ACCESS_GRANTED =>
 				index_cnt_enable <='0';
 				index_reset <='1';
-				tc_char_in_edge_reset <= '0';
+				--tc_char_in_edge_reset <= '0';
 				--index_check_cnt_enable <='0';
 				--index_check_reset <='1';
 
@@ -390,7 +390,7 @@ begin
 			when ACCESS_DENIED =>
 				index_cnt_enable <='0';
 				index_reset <='1';
-				tc_char_in_edge_reset <= '0';
+				--tc_char_in_edge_reset <= '0';
 				--index_check_cnt_enable <='0';
 				--index_check_reset <='1';
 
@@ -415,7 +415,7 @@ begin
 			when LED_DEBUG =>
 				index_cnt_enable <='0';
 				index_reset <='1';
-				tc_char_in_edge_reset <= '0';
+				--tc_char_in_edge_reset <= '0';
 				--index_check_cnt_enable <='0';
 				--index_check_reset <='1';
 
@@ -435,7 +435,7 @@ begin
 			when others =>
 				index_cnt_enable <='0';
 				index_reset <='1';
-				tc_char_in_edge_reset <= '0';
+				--tc_char_in_edge_reset <= '0';
 				--index_check_cnt_enable <='0';
 				--index_check_reset <='1';
 
@@ -531,8 +531,12 @@ begin
 					index_check_reset <='0';
 					RD1 <= '0';
 			end case ;
-		--else
-		--	RD1 <= '0';
+		else
+			index_check_reset <= '0';
+			check_ended <= '0';
+			index_check_cnt_enable <='0';
+
+			RD1 <= '0';
 		--	ADD_RD1 <= (others => '0');
 		end if;
 	end process;

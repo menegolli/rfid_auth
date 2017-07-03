@@ -77,16 +77,18 @@ begin
 		tc 				=> tc_dc
 	);
 
-	pwm_out_p : process(reset, dc, pwm_cnt)
+	pwm_out_p : process(reset, enable, dc, pwm_cnt)
 	begin
 		if reset = '0' then
 			pwm_out <= '0';
-		else
+		elsif enable = '1' then
 			if unsigned(pwm_cnt) > unsigned(dc) then
 				pwm_out <= '0';
 			else
 				pwm_out <= '1';
 			end if;
+		else
+			pwm_out <= '0';
 		end if;
 	end process;
 end architecture pwm_arch;

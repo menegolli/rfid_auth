@@ -27,9 +27,9 @@ architecture behavior of tester is
 			enable_reader	: in std_logic;							--assign to switch to enable the reading from the RFID tag reader
 			data_out 		: out std_logic_vector(7 downto 0);
 			pwm_out 		: out std_logic;
-			--red_pwm_out 		: out std_logic;
-			--green_pwm_out 		: out std_logic;
-			--blue_pwm_out 		: out std_logic;
+			red_pwm_out 		: out std_logic;
+			green_pwm_out 		: out std_logic;
+			blue_pwm_out 		: out std_logic;
 			led_idle		: out std_logic;
 			led_grant		: out std_logic;
 			led_denied		: out std_logic
@@ -58,9 +58,9 @@ architecture behavior of tester is
 
 	signal enable_reader: std_logic;
 	signal pwm_out : std_logic;
-	--signal red_pwm_out : std_logic;
-	--signal green_pwm_out : std_logic;
-	--signal blue_pwm_out : std_logic;
+	signal red_pwm_out : std_logic;
+	signal green_pwm_out : std_logic;
+	signal blue_pwm_out : std_logic;
 	signal led_grant : std_logic;
 	signal led_denied : std_logic;
 	signal led_idle : std_logic;
@@ -93,9 +93,9 @@ BEGIN
 			--data_debug_out	=> data_debug_out,	--keep for debug purposes
 			--status_bit		=> status,
 			pwm_out			=> pwm_out,
-			--red_pwm_out 	=> red_pwm_out,
-			--green_pwm_out	=> green_pwm_out,
-			--blue_pwm_out 	=> blue_pwm_out,
+			red_pwm_out 	=> red_pwm_out,
+			green_pwm_out	=> green_pwm_out,
+			blue_pwm_out 	=> blue_pwm_out,
 			led_idle		=> led_idle,
 			led_grant		=> led_grant,
 			led_denied		=> led_denied

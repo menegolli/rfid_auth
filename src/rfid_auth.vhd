@@ -208,7 +208,7 @@ begin
 		clock 		=> clock,
 		reset 		=> reset_n,
 		enable 		=> pwm_en,
-		end_val 	=> "0001001110001000", --5000 (about 6 secs)
+		end_val 	=> "0000000001000000", --64
 		cnt_out 	=> pwm_dc_cnt_out,
 		tc 				=> tc_pwm_dc
 	);

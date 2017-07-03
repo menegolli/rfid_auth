@@ -32,10 +32,7 @@ architecture behavior of tester is
 			--blue_pwm_out 		: out std_logic;
 			led_idle		: out std_logic;
 			led_grant		: out std_logic;
-			led_denied		: out std_logic;
-			check_button_s 	: in std_logic;
-			check_button_r 	: in std_logic;
-			check_ok_out 	: out std_logic
+			led_denied		: out std_logic
 			--uart_clock_out	: out std_logic 						--keep for debug purposes
 		);
 	end component;
@@ -47,9 +44,7 @@ architecture behavior of tester is
 		PORT(
 			clk: out std_logic;
 			rstn:out std_logic;
-			uart_line:out std_logic;
-			check_button_s : out std_logic;
-			check_button_r : out std_logic
+			uart_line:out std_logic
 		);
 	end component;
 
@@ -69,9 +64,6 @@ architecture behavior of tester is
 	signal led_grant : std_logic;
 	signal led_denied : std_logic;
 	signal led_idle : std_logic;
-	signal check_ok_out : std_logic;
-	signal check_button_s : std_logic;
-	signal check_button_r : std_logic;
 
 
 BEGIN
@@ -88,9 +80,7 @@ BEGIN
 		PORT MAP(
 			clk 		=> clock,
 			rstn 		=> reset,
-			uart_line	=> uart_line,
-			check_button_s => check_button_s,
-			check_button_r => check_button_r
+			uart_line	=> uart_line
 		);
 
 	rfid_a: rfid_auth
@@ -108,10 +98,7 @@ BEGIN
 			--blue_pwm_out 	=> blue_pwm_out,
 			led_idle		=> led_idle,
 			led_grant		=> led_grant,
-			led_denied		=> led_denied,
-			check_button_s => check_button_s,
-			check_button_r => check_button_r,
-			check_ok_out	=> check_ok_out
+			led_denied		=> led_denied
 		);
 
 

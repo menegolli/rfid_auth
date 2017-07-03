@@ -16,10 +16,7 @@ entity rfid_auth is
 		--blue_pwm_out 		: out std_logic;
 		led_idle		: out std_logic;
 		led_grant		: out std_logic;
-		led_denied		: out std_logic;
-		check_button_s 	: in std_logic;
-		check_button_r 	: in std_logic;
-		check_ok_out 	: out std_logic
+		led_denied		: out std_logic
 	);
 end entity rfid_auth;
 
@@ -47,9 +44,6 @@ architecture struct of rfid_auth is
 			led_idle				: OUT std_logic;
 			led_grant				: OUT std_logic;
 			led_denied			: OUT std_logic;
-			check_ok_out		: OUT std_logic;
-			check_button_s	: in std_logic;
-			check_button_r	: in std_logic;
 			tag_mem_out			: in std_logic_vector(7 downto 0)
 		);
 	end component;
@@ -111,9 +105,6 @@ begin
 		led_idle		=> led_idle,
 		led_grant		=> led_grant,
 		led_denied		=> led_denied,
-		check_ok_out	=> check_ok_out,
-		check_button_s 	=> check_button_s,
-		check_button_r 	=> check_button_r,
 		tag_mem_out		=> tag_mem_out
 	);
 

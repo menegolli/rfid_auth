@@ -18,9 +18,6 @@ entity rfid_processor is
 		led_idle				: OUT std_logic;
 		led_grant				: OUT std_logic;
 		led_denied			: OUT std_logic;
-		check_ok_out		: OUT std_logic;
-		check_button_s	: in std_logic;
-		check_button_r	: in std_logic;
 		tag_mem_out			: in std_logic_vector(7 downto 0)
 	);
 end entity rfid_processor;
@@ -43,8 +40,7 @@ architecture arch of rfid_processor is
 		IDLE,
 		CHECK_ONE,
 		DONE_CHECK_GRANT,
-		DONE_CHECK_DENY,
-		WAIT_FOR_BUTTON
+		DONE_CHECK_DENY
 		);
 
 	signal current_state, next_state: state;
@@ -113,7 +109,6 @@ begin
 	addr_read <= index_check;
 	ADD_RD1 <= index_check;
 	ADD_WR <= index;
-	check_ok_out <= check_ok;
 
 	rf: register_file
 	generic map(
@@ -326,20 +321,8 @@ begin
 					if index_check_tc = '1' then
 						next_state_check <= DONE_CHECK_GRANT;
 					else
-						next_state_check <= WAIT_FOR_BUTTON;
+						next_state_check <= CHECK_ONE;
 					end if;
-				end if;
-
-			when WAIT_FOR_BUTTON =>
-				check_ended <= '0';
-				check_grant <= '0';
-				index_check_cnt_enable <='0';
-				index_check_reset <='1';
-				RD1 <= '0';
-				if next_check = '1' then
-					next_state_check <= CHECK_ONE;
-				else
-					next_state_check <= WAIT_FOR_BUTTON;
 				end if;
 
 			when DONE_CHECK_GRANT =>
@@ -367,67 +350,6 @@ begin
 				next_state_check <= IDLE;
 		end case ;
 	end process;
-
-	check_button_set_p : process(check_button_s)
-	begin
-		check_button_set <= '0';
-		if check_button_s = '1' then
-			check_button_set <= '0';
-		else
-			check_button_set <= '1';
-		end if;
-	end process;
-
-	check_button_reset_p : process(check_button_r)
-	begin
-		check_button_reset <= '0';
-		if check_button_r = '1' then
-			check_button_reset <= '0';
-		else
-			check_button_reset <= '1';
-		end if;
-	end process;
-
-	next_check_p : process(check_button_set, check_button_reset)
-	begin
-		if check_button_set = '1' then
-			continue_check <= '1';
-		elsif check_button_reset = '1' or reset_n = '0' then
-			continue_check <= '0';
-		end if;
-	end process;
-
-	next_check_signal_p : process(clk, reset_n)
-	begin
-		if reset_n = '0' then
-			next_check <= '0';
-		elsif clk'event and clk = '1' then
-			next_check <= next_check_fut;
-		end if;
-	end process;
-
-	next_check_clock_p : process (next_check, continue_check)
-	begin
-		next_check_fut <= '0';
-		if (continue_check = '1' and next_check = '0') then
-			if already_pressed  = '0' then
-				next_check_fut <= '1';
-			else
-				next_check_fut <= '0';
-			end if;
-		end if;
-	end process;
-
-	alredy_pressed_p : process (next_check_fut, check_button_reset, reset_n)
-	begin
-		if reset_n = '0' or check_button_reset = '1' then
-			already_pressed <= '0';
-		elsif next_check_fut'event and next_check_fut = '1' then
-			already_pressed <= '1';
-		end if;
-	end process;
-
-
 
 	comp_p : process (clk, reset_n, enable_check_proc)
 	begin

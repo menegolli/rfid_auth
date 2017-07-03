@@ -10,9 +10,7 @@ entity signal_generator is
 	PORT(
 		clk: out std_logic;
 		rstn:out std_logic;
-		uart_line:out std_logic;
-		check_button_s : out std_logic;
-		check_button_r : out std_logic
+		uart_line:out std_logic
 	);
 end signal_generator;
 
@@ -53,8 +51,6 @@ BEGIN
 	uart: process
 	begin
 		uart_line <='1';	-- standard configuration, line is HIGH
-		check_button_s <= '1';
-		check_button_r <= '1';
 
 		--0
 		wait for 50 us;
@@ -155,72 +151,6 @@ BEGIN
 
 		-- check tag mem out step by step
 		-- step 1
-		wait for 1 ms;
-		check_button_s <= '0';
-		check_button_r <= '1';
-
-		wait for 1 ms;
-		check_button_s <= '1';
-		check_button_r <= '1';
-
-		wait for 1 ms;
-		check_button_s <= '1';
-		check_button_r <= '0';
-
-		wait for 1 ms;
-		check_button_s <= '1';
-		check_button_r <= '1';
-
-		-- step 2
-		wait for 1 ms;
-		check_button_s <= '0';
-		check_button_r <= '1';
-
-		wait for 1 ms;
-		check_button_s <= '1';
-		check_button_r <= '1';
-
-		wait for 1 ms;
-		check_button_s <= '1';
-		check_button_r <= '0';
-
-		wait for 1 ms;
-		check_button_s <= '1';
-		check_button_r <= '1';
-
-		-- step 3
-		wait for 1 ms;
-		check_button_s <= '0';
-		check_button_r <= '1';
-
-		wait for 1 ms;
-		check_button_s <= '1';
-		check_button_r <= '1';
-
-		wait for 1 ms;
-		check_button_s <= '1';
-		check_button_r <= '0';
-
-		wait for 1 ms;
-		check_button_s <= '1';
-		check_button_r <= '1';
-
-		-- step 4
-		wait for 1 ms;
-		check_button_s <= '0';
-		check_button_r <= '1';
-
-		wait for 1 ms;
-		check_button_s <= '1';
-		check_button_r <= '1';
-
-		wait for 1 ms;
-		check_button_s <= '1';
-		check_button_r <= '0';
-
-		wait for 1 ms;
-		check_button_s <= '1';
-		check_button_r <= '1';
 
 		--wait for DATA_DELAY;
 

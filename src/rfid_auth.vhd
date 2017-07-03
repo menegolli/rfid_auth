@@ -171,7 +171,7 @@ begin
 		reset 		=> reset_n,
 		dc				=> dc_cnt_out,
 		divisor 	=> "1100001101010000",--50000 (1KHz)
-		pwm_out 	=> pwm_out
+		pwm_out 	=> red_pwm_out
 	);
 
 	green_pwm: pwm
@@ -184,7 +184,7 @@ begin
 		reset 		=> reset_n,
 		dc				=> dc_cnt_out,
 		divisor 	=> "1010111111001000",--45000 (1.1 KHz)
-		pwm_out 	=> pwm_out
+		pwm_out 	=> green_pwm_out
 	);
 
 	blue_pwm: pwm
@@ -197,7 +197,7 @@ begin
 		reset 		=> reset_n,
 		dc				=> dc_cnt_out,
 		divisor 	=> "1101011011011000",--55000 (900 Hz)
-		pwm_out 	=> pwm_out
+		pwm_out 	=> blue_pwm_out
 	);
 
 	pwm_dc_cnt : countern

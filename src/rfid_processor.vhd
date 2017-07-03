@@ -13,12 +13,12 @@ entity rfid_processor is
 		addr_read				: OUT std_logic_vector(1 downto 0);
 		tc_char_in			: IN std_logic;
 		uart_data 			: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
-		data_out 				: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 		pwm_en					: OUT std_logic;
 		led_idle				: OUT std_logic;
 		led_grant				: OUT std_logic;
 		led_denied			: OUT std_logic;
-		tag_mem_out			: in std_logic_vector(7 downto 0)
+		tag_mem_out			: IN std_logic_vector(7 downto 0);
+		sine_mem_enable : OUT std_logic
 	);
 end entity rfid_processor;
 
@@ -86,8 +86,7 @@ architecture arch of rfid_processor is
 			ADD_WR			:	IN std_logic_vector(N_REG-1 downto 0);
 			ADD_RD1			:	IN std_logic_vector(N_REG-1 downto 0);
 			DATAIN			:	IN std_logic_vector(N-1 downto 0);
-			OUT1			:	OUT std_logic_vector(N-1 downto 0);
-			OUT2			:	OUT std_logic_vector(N-1 downto 0)
+			OUT1			:	OUT std_logic_vector(N-1 downto 0)
 		);
 	end component;
 
@@ -123,8 +122,7 @@ begin
 		ADD_WR		=> ADD_WR,
 		ADD_RD1		=> ADD_RD1,
 		DATAIN		=> uart_data, --already 8 bits
-		OUT1		=> rf_out,
-		OUT2		=> data_out
+		OUT1		=> rf_out
 		);
 
 	cnt_index : countern
@@ -174,6 +172,7 @@ begin
 				led_idle <= '0';
 				led_grant <= '0';
 				led_denied <= '0';
+				sine_mem_enable <= '0';
 				next_state <= IDLE;
 
 			when IDLE =>
@@ -184,6 +183,7 @@ begin
 				led_idle <= '1';
 				led_grant <= '0';
 				led_denied <= '0';
+				sine_mem_enable <= '0';
 				if (tc_char_in = '1') then
 					next_state <= STORE;
 				else
@@ -198,6 +198,7 @@ begin
 				led_idle <= '0';
 				led_grant <= '0';
 				led_denied <= '0';
+				sine_mem_enable <= '0';
 				if (index = "11" and index_tc ='1') then
 					next_state <= DONE_STORE_FOUR;
 				else
@@ -213,6 +214,7 @@ begin
 				led_idle <= '0';
 				led_grant <= '0';
 				led_denied <= '0';
+				sine_mem_enable <= '0';
 				next_state <= IDLE;
 
 			when DONE_STORE_FOUR =>
@@ -223,6 +225,7 @@ begin
 				led_idle <= '0';
 				led_grant <= '0';
 				led_denied <= '0';
+				sine_mem_enable <= '0';
 				next_state <= CHECK_TAG;
 
 			when CHECK_TAG =>
@@ -233,6 +236,7 @@ begin
 				led_idle <= '0';
 				led_grant <= '0';
 				led_denied <= '0';
+				sine_mem_enable <= '0';
 				if (check_ended = '1') then
 					if (check_grant = '1') then
 						next_state <= ACCESS_GRANTED;
@@ -251,6 +255,7 @@ begin
 				led_idle <= '0';
 				led_grant <= '1';
 				led_denied <= '0';
+				sine_mem_enable <= '0';
 				next_state <= ACCESS_GRANTED;
 
 			when ACCESS_DENIED =>
@@ -261,6 +266,7 @@ begin
 				led_idle <= '0';
 				led_grant <= '0';
 				led_denied <= '1';
+				sine_mem_enable <= '1';
 				next_state <= ACCESS_DENIED;
 
 			when others =>
@@ -271,6 +277,7 @@ begin
 				led_idle <= '0';
 				led_grant <= '0';
 				led_denied <= '0';
+				sine_mem_enable <= '0';
 				next_state <= IDLE;
 		end case;
 	end process;

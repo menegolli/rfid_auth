@@ -21,8 +21,7 @@ entity register_file is
 	ADD_RD1		:	IN std_logic_vector(N_REG-1 downto 0);
 --	ADD_RD2		:	IN std_logic_vector(N_REG-1 downto 0);
 	DATAIN		:	IN std_logic_vector(N-1 downto 0);
-	OUT1		:	OUT std_logic_vector(N-1 downto 0);
-	OUT2		:	OUT std_logic_vector(N-1 downto 0)
+	OUT1		:	OUT std_logic_vector(N-1 downto 0)
 	);
 end register_file;
 
@@ -43,10 +42,8 @@ architecture A of register_file is
 			if (RESET='0') then			--asynch reset
 				REGISTERS		<=	(others=>(others=>'0'));
 				OUT1			<=	(others=>'0');
-				OUT2			<=	(others=>'0');
 			--elsif(CLK='1' and CLK'event) then
 			else
-				OUT2	<=	REGISTERS(to_integer(unsigned(ADD_WR)-1));
 				if(WR='1') then
 					REGISTERS(to_integer(unsigned((ADD_WR))))<=DATAIN;
 				end if;

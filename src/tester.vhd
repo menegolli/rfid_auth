@@ -33,7 +33,6 @@ architecture behavior of tester is
 			led_idle		: out std_logic;
 			led_grant		: out std_logic;
 			led_denied		: out std_logic
-			--uart_clock_out	: out std_logic 						--keep for debug purposes
 		);
 	end component;
 

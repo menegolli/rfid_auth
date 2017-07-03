@@ -28,14 +28,21 @@ architecture struct of rfid_auth is
 	signal tc_char			: std_logic;
 	signal addr_read		: std_logic_vector(1 downto 0);
 	signal tag_mem_out		: std_logic_vector(7 downto 0);
+	signal sine_mem_out		: std_logic_vector(7 downto 0);
+	signal sine_cnt_out		: std_logic_vector(7 downto 0);
+	signal sine_addr			: std_logic_vector(7 downto 0);
 	--signal pwm_clk 			: std_logic;
 	--signal pwm_out			: std_logic;
+	signal sine_mem_en  	: std_logic;
 	signal pwm_en 				: std_logic;
 	signal dc_ctrl_clk		: std_logic;
+	signal sine_clk				: std_logic;
 	signal pwm_dc_cnt_out	: std_logic_vector(15 downto 0);
 	signal dc_cnt_out			: std_logic_vector(15 downto 0);
 	signal tc_pwm_dc			: std_logic;
 	signal tc_dc					: std_logic;
+	signal sine_tc				: std_logic;
+	signal sine_addr_tc		: std_logic;
 
 	component rfid_processor is
 		port (
@@ -44,12 +51,12 @@ architecture struct of rfid_auth is
 			addr_read				: OUT std_logic_vector(1 downto 0);
 			tc_char_in			: IN std_logic;
 			uart_data 			: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
-			data_out 				: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 			pwm_en					: OUT std_logic;
 			led_idle				: OUT std_logic;
 			led_grant				: OUT std_logic;
 			led_denied			: OUT std_logic;
-			tag_mem_out			: in std_logic_vector(7 downto 0)
+			tag_mem_out			: IN std_logic_vector(7 downto 0);
+			sine_mem_enable : OUT std_logic
 		);
 	end component;
 
@@ -69,9 +76,16 @@ architecture struct of rfid_auth is
 
 	component tag_mem is
 		port (
-			clk			: in std_logic;
 			addr		: in std_logic_vector(1 downto 0);
 			tag_mem_out	: out std_logic_vector(7 downto 0)
+		);
+	end component;
+
+	component sine_mem is
+		port (
+			enable_mem		: std_logic;
+			addr					: in std_logic_vector(7 downto 0);
+			sine_mem_out 	: out std_logic_vector(7 downto 0)
 		);
 	end component;
 
@@ -108,6 +122,7 @@ begin
 	--divisor <= "0000000011011000";	--216 for 115200 as baud rate for 50 Mhz clock
 	divisor <= "0000101000101011"; --2603 for 9600 as baud rate
 	bits_per_data <= "1011";		--11 bits per character
+	data_out <= sine_mem_out;
 
 	--------
 	rfid_p: rfid_processor
@@ -119,12 +134,12 @@ begin
 		addr_read		=> addr_read,
 		tc_char_in		=> tc_char,
 		uart_data 		=> data,
-		data_out 		=> data_out,
 		pwm_en			=> pwm_en,
 		led_idle		=> led_idle,
 		led_grant		=> led_grant,
 		led_denied		=> led_denied,
-		tag_mem_out		=> tag_mem_out
+		tag_mem_out		=> tag_mem_out,
+		sine_mem_enable => sine_mem_en
 	);
 
 	uart_contr: uart_controller
@@ -142,9 +157,15 @@ begin
 
 	memory_tag: tag_mem
 	port map (
-		clk 			=> clock,
 		addr 			=> addr_read,
 		tag_mem_out 	=> tag_mem_out
+	);
+
+	samples_mem: sine_mem
+	port map (
+		enable_mem 		=> sine_mem_en,
+		addr 					=> sine_addr,
+		sine_mem_out 	=> sine_mem_out
 	);
 
 
@@ -233,6 +254,41 @@ begin
 		end_val 	=> "1000000000000000",
 		cnt_out 	=> dc_cnt_out,
 		tc 				=> tc_dc
+	);
+
+	sine_clock_gen : countern
+	generic map (
+		n => 8 -- determine which value to apply
+	)
+	port map(
+		clock 		=> clock,
+		reset 		=> reset_n,
+		enable 		=> sine_mem_en,
+		end_val 	=> "11011110", --222 (une sample every 8.9 us)
+		cnt_out 	=> sine_cnt_out,
+		tc 				=> sine_tc
+	);
+
+	sine_clk_p : process(reset_n, sine_tc)
+	begin
+		if reset_n = '0' then
+			sine_clk <= '0';
+		elsif (sine_tc'event and sine_tc = '1') then
+			sine_clk <= not sine_clk;
+		end if;
+	end process;
+
+	sine_addr_c : countern
+	generic map (
+		n => 8 -- determine which value to apply
+	)
+	port map(
+		clock 		=> sine_clk,
+		reset 		=> reset_n,
+		enable 		=> sine_mem_en,
+		end_val 	=> (others => '1'),
+		cnt_out 	=> sine_addr,
+		tc 				=> sine_addr_tc
 	);
 
 

@@ -1,0 +1,41 @@
+# Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, the Altera Quartus Prime License Agreement,
+# the Altera MegaCore Function License Agreement, or other 
+# applicable license agreement, including, without limitation, 
+# that your use is for the sole purpose of programming logic 
+# devices manufactured by Altera and sold by Altera or its 
+# authorized distributors.  Please refer to the applicable 
+# agreement for further details.
+
+# Quartus Prime Version 15.1.0 Build 185 10/21/2015 SJ Lite Edition
+# File: D:\mauro\Developer\VHDL\rfid_auth\src\rfid_auth_sine.csv
+# Generated on: Mon Jul 03 18:56:31 2017
+
+# Note: The column header names should not be changed if you wish to import this .csv file into the Quartus Prime software.
+
+To,Direction,Location,I/O Bank,VREF Group,Fitter Location,I/O Standard,Reserved,Current Strength,Slew Rate,Differential Pair,Transceiver Analog Settings Protocol,VCCR_GXB/VCCT_GXB Voltage,Transceiver I/O Pin Termination,Transceiver Dedicated Refclk Pin Termination,Transmitter Common Mode Driver Voltage,Transmitter Slew Rate Control,Transmitter Differential Output Voltage,Receiver Buffer Common Mode Voltage,Strict Preservation
+blue_pwm_out,Output,PIN_AK19,4A,B4A_N0,PIN_AK19,2.5 V,,,,,,,,,,,,,
+clock,Input,PIN_AF14,3B,B3B_N0,PIN_AF14,2.5 V,,,,,,,,,,,,,
+data_out[7],Output,PIN_AF25,4A,B4A_N0,PIN_W20,2.5 V,,,,,,,,,,,,,
+data_out[6],Output,PIN_AE24,4A,B4A_N0,PIN_Y19,2.5 V,,,,,,,,,,,,,
+data_out[5],Output,PIN_AE23,4A,B4A_N0,PIN_W19,2.5 V,,,,,,,,,,,,,
+data_out[4],Output,PIN_AD24,4A,B4A_N0,PIN_W17,2.5 V,,,,,,,,,,,,,
+data_out[3],Output,PIN_AC23,4A,B4A_N0,PIN_V18,2.5 V,,,,,,,,,,,,,
+data_out[2],Output,PIN_AB21,4A,B4A_N0,PIN_V17,2.5 V,,,,,,,,,,,,,
+data_out[1],Output,PIN_AA21,4A,B4A_N0,PIN_W16,2.5 V,,,,,,,,,,,,,
+data_out[0],Output,PIN_AB17,4A,B4A_N0,PIN_V16,2.5 V,,,,,,,,,,,,,
+enable_reader,Input,PIN_AB12,3A,B3A_N0,PIN_AB12,2.5 V,,,,,,,,,,,,,
+green_pwm_out,Output,PIN_AK16,4A,B4A_N0,PIN_AK16,2.5 V,,,,,,,,,,,,,
+led_denied,Output,PIN_Y18,4A,B4A_N0,PIN_Y18,2.5 V,,,,,,,,,,,,,
+led_grant,Output,PIN_AK18,4A,B4A_N0,PIN_AK18,2.5 V,,,,,,,,,,,,,
+led_idle,Output,PIN_AJ19,4A,B4A_N0,PIN_AJ19,2.5 V,,,,,,,,,,,,,
+pwm_out,Output,PIN_Y17,4A,B4A_N0,PIN_Y17,2.5 V,,,,,,,,,,,,,
+red_pwm_out,Output,PIN_AD17,4A,B4A_N0,PIN_AD17,2.5 V,,,,,,,,,,,,,
+reset_n,Input,PIN_AA14,3B,B3B_N0,PIN_AA14,2.5 V,,,,,,,,,,,,,
+uart_line,Input,PIN_AC18,4A,B4A_N0,PIN_AC18,2.5 V,,,,,,,,,,,,,

@@ -8,6 +8,7 @@ vcom src/uart_fsm.vhd
 vcom src/uart_peripheral.vhd
 vcom src/uart_controller.vhd
 vcom src/tag_mem.vhd
+vcom src/sine_mem.vhd
 vcom src/pwm.vhd
 vcom src/rfid_processor.vhd
 vcom src/rfid_auth.vhd

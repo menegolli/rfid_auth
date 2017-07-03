@@ -157,7 +157,7 @@ begin
 		enable 		=> pwm_en,
 		reset 		=> reset_n,
 		dc				=> "1000000000000000",
-		end_val 	=> (others => '1');
+		end_val 	=> (others => '1'),
 		pwm_out 	=> pwm_out
 	);
 
@@ -170,7 +170,7 @@ begin
 		enable 		=> pwm_en,
 		reset 		=> reset_n,
 		dc				=> dc_cnt_out,
-		end_val 	=> (others => '1');
+		end_val 	=> "1000000000000000",
 		pwm_out 	=> red_pwm_out
 	);
 
@@ -183,6 +183,7 @@ begin
 		enable 		=> pwm_en,
 		reset 		=> reset_n,
 		dc				=> dc_cnt_out,
+		end_val 	=> "1000000000000000",
 		pwm_out 	=> green_pwm_out
 	);
 
@@ -195,6 +196,7 @@ begin
 		enable 		=> pwm_en,
 		reset 		=> reset_n,
 		dc				=> dc_cnt_out,
+		end_val 	=> (others => '1'),
 		pwm_out 	=> blue_pwm_out
 	);
 
@@ -228,7 +230,7 @@ begin
 		clock 		=> dc_ctrl_clk,
 		reset 		=> reset_n,
 		enable 		=> pwm_en,
-		end_val 	=> (others => '1'),
+		end_val 	=> "1000000000000000",
 		cnt_out 	=> dc_cnt_out,
 		tc 				=> tc_dc
 	);

@@ -30,7 +30,12 @@ architecture struct of rfid_auth is
 	signal tag_mem_out		: std_logic_vector(7 downto 0);
 	--signal pwm_clk 			: std_logic;
 	--signal pwm_out			: std_logic;
-	signal pwm_en 			: std_logic;
+	signal pwm_en 				: std_logic;
+	signal dc_ctrl_clk		: std_logic;
+	signal pwm_dc_cnt_out	: std_logic_vector(15 downto 0);
+	signal dc_cnt_out			: std_logic_vector(15 downto 0);
+	signal tc_pwm_dc			: std_logic;
+	signal tc_dc					: std_logic;
 
 	component rfid_processor is
 		port (
@@ -75,12 +80,26 @@ architecture struct of rfid_auth is
 			n : integer := 16
 		);
 		port(
-			clk_sys	: IN std_logic;
+			clk_sys		: IN std_logic;
 			enable 		: IN std_logic;
 			reset 		: IN std_logic;
-			--dc 			: IN std_logic_vector(n-1 downto 0);
-			end_val 	: IN std_logic_vector (n - 1 downto 0);
+			dc 				: in std_logic_vector(n-1 downto 0);
+			divisor 	: IN std_logic_vector (n - 1 downto 0);
 			pwm_out 	: OUT std_logic
+		);
+	end component;
+
+	component countern is
+		generic(
+			n : integer:=16
+		);
+		port (
+			clock 			: in std_logic;
+			reset 		 	: in std_logic;
+			enable			: in std_logic;
+			end_val			: in std_logic_vector(n-1 downto 0);
+			cnt_out			: out std_logic_vector(n-1 downto 0);
+			tc 				: out std_logic
 		);
 	end component;
 
@@ -137,13 +156,11 @@ begin
 		clk_sys		=> clock,
 		enable 		=> pwm_en,
 		reset 		=> reset_n,
-		--pwm_en 		=> pwm_en,
-		--dc 			=> "0000000001000000",--64
-		--dc 			=> "0000000000001000",--8
-		--end_val 	=> "0000000010000000",--128
-		end_val 	=> "0000000000100000",--32
+		dc				=> "1000000000000000",
+		divisor 	=> "1100001101010000",--50000 (1KHz)
 		pwm_out 	=> pwm_out
 	);
+
 	red_pwm: pwm
 	generic map(
 		n => 16
@@ -152,12 +169,9 @@ begin
 		clk_sys		=> clock,
 		enable 		=> pwm_en,
 		reset 		=> reset_n,
-		--pwm_en 		=> pwm_en,
-		--dc 			=> "0000000001000000",--64
-		--dc 			=> "0000000000001000",--8
-		--end_val 	=> "0000000010000000",--128
-		end_val 	=> "0000000000100000",--32
-		pwm_out 	=> red_pwm_out
+		dc				=> dc_cnt_out,
+		divisor 	=> "1100001101010000",--50000 (1KHz)
+		pwm_out 	=> pwm_out
 	);
 
 	green_pwm: pwm
@@ -168,12 +182,9 @@ begin
 		clk_sys		=> clock,
 		enable 		=> pwm_en,
 		reset 		=> reset_n,
-		--pwm_en 		=> pwm_en,
-		--dc 			=> "0000000001000000",--64
-		--dc 			=> "0000000000001000",--8
-		--end_val 	=> "0000000010000000",--128
-		end_val 	=> "0000000001000000",--64
-		pwm_out 	=> green_pwm_out
+		dc				=> dc_cnt_out,
+		divisor 	=> "1010111111001000",--45000 (1.1 KHz)
+		pwm_out 	=> pwm_out
 	);
 
 	blue_pwm: pwm
@@ -184,11 +195,46 @@ begin
 		clk_sys		=> clock,
 		enable 		=> pwm_en,
 		reset 		=> reset_n,
-		--pwm_en 		=> pwm_en,
-		--dc 			=> "0000000001000000",--64
-		--dc 			=> "0000000000001000",--8
-		end_val 	=> "0000000010000000",--128
-		pwm_out 	=> blue_pwm_out
+		dc				=> dc_cnt_out,
+		divisor 	=> "1101011011011000",--55000 (900 Hz)
+		pwm_out 	=> pwm_out
 	);
+
+	pwm_dc_cnt : countern
+	generic map (
+		n => 16 -- determine which value to apply
+	)
+	port map(
+		clock 		=> clock,
+		reset 		=> reset_n,
+		enable 		=> pwm_en,
+		end_val 	=> "0001001110001000", --5000 (about 6 secs)
+		cnt_out 	=> pwm_dc_cnt_out,
+		tc 				=> tc_pwm_dc
+	);
+
+	dc_ctrl_clk_p : process(reset_n, tc_pwm_dc)
+	begin
+		if reset_n = '0' then
+			dc_ctrl_clk <= '0';
+		elsif (tc_pwm_dc'event and tc_pwm_dc = '1') then
+			dc_ctrl_clk <= not dc_ctrl_clk;
+		end if;
+	end process;
+
+	dc_cnt : countern
+	generic map (
+		n => 16 -- determine which value to apply
+	)
+	port map(
+		clock 		=> dc_ctrl_clk,
+		reset 		=> reset_n,
+		enable 		=> pwm_en,
+		end_val 	=> (others => '1'),
+		cnt_out 	=> dc_cnt_out,
+		tc 				=> tc_dc
+	);
+
+
 
 end architecture struct;

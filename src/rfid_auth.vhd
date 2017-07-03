@@ -84,7 +84,7 @@ architecture struct of rfid_auth is
 			enable 		: IN std_logic;
 			reset 		: IN std_logic;
 			dc 				: in std_logic_vector(n-1 downto 0);
-			divisor 	: IN std_logic_vector (n - 1 downto 0);
+			end_val		: IN std_logic_vector(n-1 downto 0);
 			pwm_out 	: OUT std_logic
 		);
 	end component;
@@ -157,7 +157,7 @@ begin
 		enable 		=> pwm_en,
 		reset 		=> reset_n,
 		dc				=> "1000000000000000",
-		divisor 	=> "1100001101010000",--50000 (1KHz)
+		end_val 	=> (others => '1');
 		pwm_out 	=> pwm_out
 	);
 
@@ -170,7 +170,7 @@ begin
 		enable 		=> pwm_en,
 		reset 		=> reset_n,
 		dc				=> dc_cnt_out,
-		divisor 	=> "1100001101010000",--50000 (1KHz)
+		end_val 	=> (others => '1');
 		pwm_out 	=> red_pwm_out
 	);
 
@@ -183,7 +183,6 @@ begin
 		enable 		=> pwm_en,
 		reset 		=> reset_n,
 		dc				=> dc_cnt_out,
-		divisor 	=> "1010111111001000",--45000 (1.1 KHz)
 		pwm_out 	=> green_pwm_out
 	);
 
@@ -196,7 +195,6 @@ begin
 		enable 		=> pwm_en,
 		reset 		=> reset_n,
 		dc				=> dc_cnt_out,
-		divisor 	=> "1101011011011000",--55000 (900 Hz)
 		pwm_out 	=> blue_pwm_out
 	);
 

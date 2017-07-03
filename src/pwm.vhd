@@ -11,8 +11,8 @@ entity pwm is
 		clk_sys		: IN std_logic;
 		enable 		: IN std_logic;
 		reset 		: IN std_logic;
-		dc 				: in std_logic_vector(n-1 downto 0);
-		divisor 	: IN std_logic_vector (n - 1 downto 0);
+		dc 				: IN std_logic_vector(n-1 downto 0);
+		end_val		: IN std_logic_vector(n-1 downto 0);
 		pwm_out 	: OUT std_logic
 	);
 end pwm;
@@ -37,12 +37,10 @@ architecture pwm_arch of pwm is
 	--signal cnt_out : std_logic_vector (n - 1 downto 0) := (others => '0');
 	signal cnt_out : std_logic_vector (n - 1 downto 0);
 	signal tc : std_logic;
-	signal pwm_clk : std_logic;
 	signal pwm_cnt : std_logic_vector(n -1 downto 0);
 	signal tc_dc : std_logic;
 begin
-
-	clock_divisor: countern
+	count_pwm: countern
 	generic map (
 		n => n -- determine which value to apply
 	)
@@ -50,29 +48,7 @@ begin
 		clock 		=> clk_sys,
 		reset 		=> reset,
 		enable 		=> enable,
-		end_val 	=> divisor,
-		cnt_out 	=> cnt_out,
-		tc 				=> tc
-	);
-
-	pwm_clk_p :process (reset, tc)
-	begin
-		if reset = '0' then
-			pwm_clk <= '0';
-		elsif (tc'event and tc = '1') then
-			pwm_clk <= not pwm_clk;
-		end if;
-	end process;
-
-	count_pwm: countern
-	generic map (
-		n => n -- determine which value to apply
-	)
-	port map(
-		clock 		=> pwm_clk,
-		reset 		=> reset,
-		enable 		=> enable,
-		end_val 	=> (others => '1'),
+		end_val 	=> end_val,
 		cnt_out 	=> pwm_cnt,
 		tc 				=> tc_dc
 	);

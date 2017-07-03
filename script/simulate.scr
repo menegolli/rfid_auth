@@ -14,7 +14,7 @@ add wave tester/rfid_a/*
 # add wave tester/rfid_a/rfid_p/uart_data
 
 
-add wave tester/rfid_a/uart_contr/*
+# add wave tester/rfid_a/uart_contr/*
 #add wave tester/rfid_a/uart_contr/uart_line
 #add wave tester/rfid_a/uart_contr/enable_reader
 #add wave tester/rfid_a/uart_contr/data_out_contr
@@ -22,23 +22,23 @@ add wave tester/rfid_a/uart_contr/*
 #add wave tester/rfid_a/uart_contr/uart_clock_out
 #add wave tester/rfid_a/uart_contr/tc_char_out
 
-add wave tester/rfid_a/uart_contr/periph/uart_line
-add wave tester/rfid_a/uart_contr/periph/enable_reader
+# add wave tester/rfid_a/uart_contr/periph/uart_line
+# add wave tester/rfid_a/uart_contr/periph/enable_reader
 
 #add wave tester/rfid_a/uart_contr/periph/uart_clock_out
-add wave tester/rfid_a/uart_contr/periph/ucg/*
-add wave tester/rfid_a/uart_contr/periph/ucg/c16/*
+# add wave tester/rfid_a/uart_contr/periph/ucg/*
+# add wave tester/rfid_a/uart_contr/periph/ucg/c16/*
 
-add wave tester/rfid_a/uart_contr/periph/fsm/*
-
-add wave tester/rfid_a/uart_contr/periph/c4/*
-add wave tester/rfid_a/uart_contr/periph/s12/*
+# add wave tester/rfid_a/uart_contr/periph/fsm/*
+# 
+# add wave tester/rfid_a/uart_contr/periph/c4/*
+# add wave tester/rfid_a/uart_contr/periph/s12/*
 
 add wave tester/rfid_a/rfid_p/*
 
 # add wave tester/rfid_a/pwm_clk_gen/*
 
-add wave tester/rfid_a/my_pwm/*
+# add wave tester/rfid_a/my_pwm/*
 # add wave tester/rfid_a/red_pwm/*
 # add wave tester/rfid_a/green_pwm/*
 # add wave tester/rfid_a/blue_pwm/*

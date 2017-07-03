@@ -9,12 +9,10 @@ entity uart_peripheral is
 		reset 			: in std_logic;
 		uart_line 		: in std_logic;
 		enable_reader	: in std_logic;
-		divisor 		: in std_logic_vector(15 downto 0); 
+		divisor 		: in std_logic_vector(15 downto 0);
 		bits_per_data 	: in std_logic_vector(3 downto 0);
-		data_out		: out std_logic_vector(11 downto 0); 
-		uart_clock_out 	: out std_logic;	-- debug
-		tc_char			: out std_logic;	-- signalling the reading of a character 
-		status 			: out std_logic 
+		data_out		: out std_logic_vector(11 downto 0);
+		tc_char			: out std_logic	-- signalling the reading of a character
 	);
 end entity uart_peripheral;
 
@@ -29,7 +27,7 @@ architecture struct of uart_peripheral is
 			uart_clock 	: out std_logic
 		);
 	end component;
-	
+
 	component countern is
 		generic(
 		n : integer:=16
@@ -43,7 +41,7 @@ architecture struct of uart_peripheral is
 			tc 				: out std_logic
 		);
 	end component;
-	
+
 	component uart_fsm is
 		port (
 			clock 			: in std_logic;
@@ -54,11 +52,10 @@ architecture struct of uart_peripheral is
 			enable_cnt		: out std_logic;
 			reset_cnt		: out std_logic;
 			shift_enable	: out std_logic;
-			shift_reset		: out std_logic;
-			waiting 		: out std_logic
+			shift_reset		: out std_logic
 		);
 	end component;
-	
+
 	component shift_reg12 is
 		port (
 			uart_clock 		: in std_logic;
@@ -69,13 +66,13 @@ architecture struct of uart_peripheral is
 			data_out 		: out std_logic_vector(11 downto 0)
 		);
 	end component;
-	
+
 	signal uart_clock, tc_char_int, enable_cnt, reset_cnt, shift_enable, shift_reset: std_logic;		-- maybe I can remove some signals
 	signal c4_out : std_logic_vector(3 downto 0);
-	
+
 begin
-		
-		ucg: uart_clock_gen 
+
+		ucg: uart_clock_gen
 		--generates a clock based on the divisor
 		port map(
 			clock		=> clock,
@@ -98,7 +95,7 @@ begin
 			tc				=> tc_char_int
 		);
 
-		s12: shift_reg12 
+		s12: shift_reg12
 		-- constantly fills a 12 bit signal with the data received (one bit at time) from the uart line
 		port map(
 			uart_clock 		=> uart_clock,
@@ -109,7 +106,7 @@ begin
 			data_out		=> data_out
 		);
 
-		fsm: uart_fsm 
+		fsm: uart_fsm
 		-- governs the system
 		port map(
 			clock 				=> clock,
@@ -120,10 +117,8 @@ begin
 			enable_cnt			=> enable_cnt,
 			reset_cnt			=> reset_cnt,
 			shift_enable		=> shift_enable,
-			shift_reset			=> shift_reset,
-			waiting				=> status
+			shift_reset			=> shift_reset
 		);
-	uart_clock_out <= uart_clock;
 	tc_char <= tc_char_int;
 	--clear <= tc_char_int;
 end architecture struct;

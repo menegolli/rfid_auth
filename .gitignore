@@ -4,4 +4,4 @@ src/c5_pin_model_dump.txt
 src/db/
 src/incremental_db/
 src/simulation/
-
+.DS_Store

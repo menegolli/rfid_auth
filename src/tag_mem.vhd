@@ -5,7 +5,6 @@ entity tag_mem is
 	port (
 		clk			: in std_logic;
 		addr		: in std_logic_vector(1 downto 0);
-		enable_mem	: in std_logic;
 		tag_mem_out : out std_logic_vector(7 downto 0)
 	);
 end entity tag_mem;

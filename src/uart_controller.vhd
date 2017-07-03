@@ -9,13 +9,11 @@ entity uart_controller is
 		reset 			: in std_logic;
 		uart_line 		: in std_logic;
 		enable_reader	: in std_logic;
-		divisor 		: in std_logic_vector(15 downto 0); 
+		divisor 		: in std_logic_vector(15 downto 0);
 		bits_per_data 	: in std_logic_vector(3 downto 0);
-		data_out_contr	: out std_logic_vector(7 downto 0); 
+		data_out_contr	: out std_logic_vector(7 downto 0);
 		data_debug		: out std_logic_vector(11 downto 0);
- 		uart_clock_out 	: out std_logic;	--needed???
-		status 			: out std_logic;
-		tc_char_out		: out std_logic 	--signalling the reading of a character 
+		tc_char_out		: out std_logic 	--signalling the reading of a character
 	);
 end entity uart_controller;
 
@@ -31,9 +29,7 @@ architecture struct of uart_controller is
 			divisor 		: in std_logic_vector(15 downto 0);
 			bits_per_data 	: in std_logic_vector(3 downto 0);
 			data_out 		: out std_logic_vector(11 downto 0);
-			uart_clock_out 	: out std_logic;
-			tc_char 		: out std_logic;	-- signalling the reading of a character 
-			status 			: out std_logic
+			tc_char 		: out std_logic	-- signalling the reading of a character
 		);
 	end component;
 
@@ -54,9 +50,7 @@ begin
 		bits_per_data 		=> bits_per_data,
 		data_out 			=> data_out_local,	--in order to filter (needed?)
 		--uart_clock_out 		=> my_uart_clock_out,
-		uart_clock_out 		=> uart_clock_out,
-		tc_char 			=> tc_char,
-		status 				=> status
+		tc_char 			=> tc_char
 	);
 
 
@@ -85,7 +79,7 @@ begin
 	begin
 
 		--tag_read := (others(others =>'0'));		--intializing variable storing the tag being read
-		
+
 		--data_out <= (others =>'0');		--??
 		data_debug <= data_out_local;
 		case current_state is
@@ -98,9 +92,9 @@ begin
 						next_state <= IDLE;
 					end if;
 				--else
-				--	next_state <= IDLE;				
+				--	next_state <= IDLE;
 				--end if ;
-			
+
 			when READ_TAG =>
 				next_state <= DONE;
 				--data_out_contr <= data_out_local(9 downto 2);		--data output only when data is good --- ONLY INTERESTING BITS --- CHECK

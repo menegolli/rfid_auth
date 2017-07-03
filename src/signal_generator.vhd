@@ -10,12 +10,14 @@ entity signal_generator is
 	PORT(
 		clk: out std_logic;
 		rstn:out std_logic;
-		uart_line:out std_logic
+		uart_line:out std_logic;
+		check_button_s : out std_logic;
+		check_button_r : out std_logic
 	);
 end signal_generator;
 
 
-architecture behavior of signal_generator is 
+architecture behavior of signal_generator is
 
 	signal clk_i: std_logic:='0';
 	--constant DATA_DELAY : time := 8.68 us;
@@ -24,33 +26,35 @@ architecture behavior of signal_generator is
 BEGIN
 
 	clk_process: process
-	begin 
+	begin
 		clk_i <= not clk_i;
 		clk<=clk_i;
 		wait for Ts/2;
 	end process clk_process;
 --since we want 115200 baud with 50 MHz clock, the time of a bit is 8.68
 	reset: process
-	begin 
+	begin
 		rstn<='0';
 		wait for 2 us;
 		rstn<='1';
 		--wait;
-		wait for 5 ms;
-		rstn<='0';
-		wait for 2 us;
-		rstn <= '1';
-		wait for 7 ms;
-		rstn<='0';
-		wait for 2 us;
-		rstn <= '1';
+		-- wait for 5 ms;
+		-- rstn<='0';
+		-- wait for 2 us;
+		-- rstn <= '1';
+		-- wait for 7 ms;
+		-- rstn<='0';
+		-- wait for 2 us;
+		-- rstn <= '1';
 		wait;
-	
+
 	end process reset;
 
 	uart: process
-	begin 
+	begin
 		uart_line <='1';	-- standard configuration, line is HIGH
+		check_button_s <= '1';
+		check_button_r <= '1';
 
 		--0
 		wait for 50 us;
@@ -124,7 +128,7 @@ BEGIN
 		uart_line<='1';		--stop bit 1
 		wait for DATA_DELAY;
 		uart_line<='1';		--stop bit 2
-		
+
 		wait for DATA_DELAY;
 		--3
 		uart_line<='0';		--start bit
@@ -148,7 +152,76 @@ BEGIN
 		uart_line<='1';		--stop bit 1
 		wait for DATA_DELAY;
 		uart_line<='1';		--stop bit 2
-		
+
+		-- check tag mem out step by step
+		-- step 1
+		wait for 1 ms;
+		check_button_s <= '0';
+		check_button_r <= '1';
+
+		wait for 1 ms;
+		check_button_s <= '1';
+		check_button_r <= '1';
+
+		wait for 1 ms;
+		check_button_s <= '1';
+		check_button_r <= '0';
+
+		wait for 1 ms;
+		check_button_s <= '1';
+		check_button_r <= '1';
+
+		-- step 2
+		wait for 1 ms;
+		check_button_s <= '0';
+		check_button_r <= '1';
+
+		wait for 1 ms;
+		check_button_s <= '1';
+		check_button_r <= '1';
+
+		wait for 1 ms;
+		check_button_s <= '1';
+		check_button_r <= '0';
+
+		wait for 1 ms;
+		check_button_s <= '1';
+		check_button_r <= '1';
+
+		-- step 3
+		wait for 1 ms;
+		check_button_s <= '0';
+		check_button_r <= '1';
+
+		wait for 1 ms;
+		check_button_s <= '1';
+		check_button_r <= '1';
+
+		wait for 1 ms;
+		check_button_s <= '1';
+		check_button_r <= '0';
+
+		wait for 1 ms;
+		check_button_s <= '1';
+		check_button_r <= '1';
+
+		-- step 4
+		wait for 1 ms;
+		check_button_s <= '0';
+		check_button_r <= '1';
+
+		wait for 1 ms;
+		check_button_s <= '1';
+		check_button_r <= '1';
+
+		wait for 1 ms;
+		check_button_s <= '1';
+		check_button_r <= '0';
+
+		wait for 1 ms;
+		check_button_s <= '1';
+		check_button_r <= '1';
+
 		--wait for DATA_DELAY;
 
 		------4 --- this should trigger ACCESS DENIED
@@ -250,7 +323,7 @@ BEGIN
 		uart_line<='1';		--stop bit 1
 		wait for DATA_DELAY;
 		uart_line<='1';		--stop bit 2
-		
+
 		wait for DATA_DELAY;
 		--3
 		uart_line<='0';		--start bit
@@ -274,7 +347,7 @@ BEGIN
 		uart_line<='1';		--stop bit 1
 		wait for DATA_DELAY;
 		uart_line<='1';		--stop bit 2
-		
+
 		--wait for DATA_DELAY;
 
 		------4 --- this should trigger ACCESS DENIED
@@ -375,7 +448,7 @@ BEGIN
 		uart_line<='1';		--stop bit 1
 		wait for DATA_DELAY;
 		uart_line<='1';		--stop bit 2
-		
+
 		--wait for DATA_DELAY;
 		----3
 		--uart_line<='0';		--start bit
@@ -399,7 +472,7 @@ BEGIN
 		--uart_line<='1';		--stop bit 1
 		--wait for DATA_DELAY;
 		--uart_line<='1';		--stop bit 2
-		
+
 		wait for DATA_DELAY;
 
 		----4 --- this should trigger ACCESS DENIED
@@ -424,7 +497,7 @@ BEGIN
 		uart_line<='1';		--stop bit 1
 		wait for DATA_DELAY;
 		uart_line<='1';		--stop bit 2
-		
+
 		wait;
 	end process uart;
 end behavior;

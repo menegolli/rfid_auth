@@ -13,8 +13,7 @@ entity uart_fsm is
 		enable_cnt 		: out std_logic;
 		reset_cnt		: out std_logic;
 		shift_enable	: out std_logic;
-		shift_reset		: out std_logic;
-		waiting			: out std_logic 		--outside seen as STATUS
+		shift_reset		: out std_logic
 	);
 end entity uart_fsm;
 
@@ -49,9 +48,8 @@ begin
 				enable_cnt <= '0';
 				--reset_cnt <= '1';
 				reset_cnt <= '0';
-				shift_enable <= '0'; 
-				shift_reset <= '0'; 
-				waiting <= '1';
+				shift_enable <= '0';
+				shift_reset <= '0';
 
 				if (enable_reader = '1' and uart_line = '0') then --reader enabled and start bit
 					next_state <= CLEAR_CLOCK;
@@ -63,8 +61,7 @@ begin
 				enable_cnt <= '0';
 				reset_cnt <= '0';
 				shift_enable <= '0';
-				shift_reset <= '0'; 
-				waiting <= '0';
+				shift_reset <= '0';
 
 				next_state <= UART_DATA;
 
@@ -72,8 +69,7 @@ begin
 				enable_cnt <= '1';
 				reset_cnt <= '1';
 				shift_enable <= '1';
-				shift_reset <= '1'; 
-				waiting <= '0';
+				shift_reset <= '1';
 				--MY_ERROR <= '0';
 				if (tc_char = '0') then		--terminal count for the transmission of a character
 					next_state <= UART_DATA;
@@ -87,20 +83,18 @@ begin
 				--reset_cnt <= '0';
 				reset_cnt <= '1';
 				shift_enable <= '0';
-				shift_reset <= '1'; 
-				waiting <= '0';
-			
+				shift_reset <= '1';
+
 				next_state <= UART_IDLE;
-				
+
 
 			when others =>
 				--enable_cnt <= '0';
 				reset_cnt <= '1';
 				reset_cnt <= '0';
 				shift_enable <= '0';
-				shift_reset <= '1'; 
-				waiting <= '0';
-				
+				shift_reset <= '1';
+
 				next_state <= UART_IDLE;
 
 		end case;

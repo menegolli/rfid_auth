@@ -11,9 +11,9 @@ entity rfid_auth is
 		enable_reader	: in std_logic;							--assign to switch to enable the reading from the RFID tag reader
 		data_out 		: out std_logic_vector(7 downto 0);
 		pwm_out 		: out std_logic;
-		red_pwm_out 		: out std_logic;
-		green_pwm_out 		: out std_logic;
-		blue_pwm_out 		: out std_logic;
+		red_pwm_out 	: out std_logic;
+		green_pwm_out 	: out std_logic;
+		blue_pwm_out 	: out std_logic;
 		led_idle		: out std_logic;
 		led_grant		: out std_logic;
 		led_denied		: out std_logic
@@ -129,8 +129,6 @@ begin
 	port map (
 		clk 			=> clock,
 		reset_n 		=> reset_n,
-		--bits_per_data 	=> bits_per_data,
-		--divisor 		=> divisor,
 		addr_read		=> addr_read,
 		tc_char_in		=> tc_char,
 		uart_data 		=> data,

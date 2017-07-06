@@ -8,18 +8,6 @@ end tester;
 
 architecture behavior of tester is
 
-	--component uart_peripheral
-	--port (
-	--clock, reset: in std_logic;
-	--uart_line: in std_logic;
-	--divisor: in std_logic_vector(15 downto 0);
-	--bits_per_data: in std_logic_vector(3 downto 0);
-	--data_out: out std_logic_vector(11 downto 0);
-	--uart_clock_out: out std_logic;
-	--status: out std_logic
-	--);
-	--end component;
-
 	component rfid_auth is
 		port (
 			clock, reset_n	: in std_logic;
@@ -49,8 +37,6 @@ architecture behavior of tester is
 
 
 	signal clock, reset, uart_line, uart_clock, status: std_logic;
-	--signal divisor: std_logic_vector(15 downto 0);
-	--signal bits_per_data: std_logic_vector(3 downto 0);
 
 	signal data_out: std_logic_vector(7 downto 0);
 	signal data_debug_out: std_logic_vector(11 downto 0);
@@ -69,9 +55,6 @@ BEGIN
 
 	enable_reader <= '1';
 
-	--divisor <= "0000000011011000";	--216
-	--bits_per_data <= "1011";		--11 bits per character
-
 	GEN: signal_generator
 		GENERIC MAP (
 			TS=>(20 ns)
@@ -89,8 +72,6 @@ BEGIN
 			uart_line		=> uart_line,
 			enable_reader	=> enable_reader,
 			data_out 		=> data_out,
-			--data_debug_out	=> data_debug_out,	--keep for debug purposes
-			--status_bit		=> status,
 			pwm_out			=> pwm_out,
 			red_pwm_out 	=> red_pwm_out,
 			green_pwm_out	=> green_pwm_out,
@@ -100,17 +81,5 @@ BEGIN
 			led_denied		=> led_denied
 		);
 
-
-	--uart: uart_peripheral
-	--PORT MAP(
-	--	clock,
-	--	reset,
-	--	uart_line,
-	--	divisor,
-	--	bits_per_data,
-	--	data_out,
-	--	uart_clock,
-	--	status
-	--);
 
 end behavior;

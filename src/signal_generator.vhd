@@ -151,282 +151,282 @@ BEGIN
 
 		-- check tag mem out step by step
 		-- step 1
-
-		--wait for DATA_DELAY;
-
-		------4 --- this should trigger ACCESS DENIED
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-
-
-
-		wait for 2 ms;
-
-		--0
-		wait for 50 us;
-		uart_line<='0';		--start bit
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 1
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 2
-
-		--wait for 30 us;
-		wait for DATA_DELAY;
-		--1
-		uart_line<='0';		--start bit
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 1
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 2
-
-		wait for DATA_DELAY;
-		--2
-		uart_line<='0';		--start bit
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 1
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 2
-
-		wait for DATA_DELAY;
-		--3
-		uart_line<='0';		--start bit
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 1
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 2
-
-		--wait for DATA_DELAY;
-
-		------4 --- this should trigger ACCESS DENIED
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-
-
-		wait for 2 ms;
-
-		--0
-		wait for 50 us;
-		uart_line<='0';		--start bit
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 1
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 2
-
-		--wait for 30 us;
-		wait for DATA_DELAY;
-		--1
-		uart_line<='0';		--start bit
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 1
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 2
-
-		wait for DATA_DELAY;
-		--2
-		uart_line<='0';		--start bit
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 1
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 2
-
-		--wait for DATA_DELAY;
-		----3
-		--uart_line<='0';		--start bit
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';
-		--wait for DATA_DELAY;
-		--uart_line<='0';
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 1
-		--wait for DATA_DELAY;
-		--uart_line<='1';		--stop bit 2
-
-		wait for DATA_DELAY;
-
-		----4 --- this should trigger ACCESS DENIED
-		uart_line<='0';		--start bit
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='0';
-		wait for DATA_DELAY;
-		uart_line<='1';
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 1
-		wait for DATA_DELAY;
-		uart_line<='1';		--stop bit 2
+		--
+		-- wait for DATA_DELAY;
+		--
+		-- ----4 --- this should trigger ACCESS DENIED
+		-- uart_line<='0';		--start bit
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 1
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 2
+		--
+		--
+		--
+		-- wait for 2 ms;
+		--
+		-- --0
+		-- wait for 50 us;
+		-- uart_line<='0';		--start bit
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 1
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 2
+		--
+		-- --wait for 30 us;
+		-- wait for DATA_DELAY;
+		-- --1
+		-- uart_line<='0';		--start bit
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 1
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 2
+		--
+		-- wait for DATA_DELAY;
+		-- --2
+		-- uart_line<='0';		--start bit
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 1
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 2
+		--
+		-- wait for DATA_DELAY;
+		-- --3
+		-- uart_line<='0';		--start bit
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 1
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 2
+		--
+		-- --wait for DATA_DELAY;
+		--
+		-- ------4 --- this should trigger ACCESS DENIED
+		-- --uart_line<='0';		--start bit
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='0';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='0';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='1';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='1';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='0';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='1';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='0';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='1';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='1';		--stop bit 1
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='1';		--stop bit 2
+		--
+		--
+		-- wait for 2 ms;
+		--
+		-- --0
+		-- wait for 50 us;
+		-- uart_line<='0';		--start bit
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 1
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 2
+		--
+		-- --wait for 30 us;
+		-- wait for DATA_DELAY;
+		-- --1
+		-- uart_line<='0';		--start bit
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 1
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 2
+		--
+		-- wait for DATA_DELAY;
+		-- --2
+		-- uart_line<='0';		--start bit
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 1
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 2
+		--
+		-- --wait for DATA_DELAY;
+		-- ----3
+		-- --uart_line<='0';		--start bit
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='0';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='1';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='1';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='0';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='1';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='0';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='1';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='0';
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='1';		--stop bit 1
+		-- --wait for DATA_DELAY;
+		-- --uart_line<='1';		--stop bit 2
+		--
+		-- wait for DATA_DELAY;
+		--
+		-- ----4 --- this should trigger ACCESS DENIED
+		-- uart_line<='0';		--start bit
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='0';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 1
+		-- wait for DATA_DELAY;
+		-- uart_line<='1';		--stop bit 2
 
 		wait;
 	end process uart;

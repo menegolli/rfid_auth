@@ -15,11 +15,9 @@ entity register_file is
 	CLK			:	IN std_logic;
 	RESET		:	IN std_logic;
 	RD1			:	IN std_logic;
---	RD2			:	IN std_logic;
 	WR			:	IN std_logic;
 	ADD_WR		:	IN std_logic_vector(N_REG-1 downto 0);
 	ADD_RD1		:	IN std_logic_vector(N_REG-1 downto 0);
---	ADD_RD2		:	IN std_logic_vector(N_REG-1 downto 0);
 	DATAIN		:	IN std_logic_vector(N-1 downto 0);
 	OUT1		:	OUT std_logic_vector(N-1 downto 0)
 	);
@@ -57,11 +55,3 @@ architecture A of register_file is
 
 
 end A;
-
-----
-
-
-configuration CFG_RF_BEH of register_file is
-	for A
-end for;
-end configuration;

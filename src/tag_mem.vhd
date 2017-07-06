@@ -11,7 +11,6 @@ end entity tag_mem;
 architecture tag_mem_arch of tag_mem is
 	type mem is array ( 0 to 3 ) of std_logic_vector(7 downto 0);
 
-	--now they are reversed. LSB first.
 	constant tag_char : mem := (
 		0  => "10101111",
 		1  => "10011010",

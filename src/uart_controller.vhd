@@ -48,8 +48,7 @@ begin
 		enable_reader		=> enable_reader,
 		divisor 			=> divisor,
 		bits_per_data 		=> bits_per_data,
-		data_out 			=> data_out_local,	--in order to filter (needed?)
-		--uart_clock_out 		=> my_uart_clock_out,
+		data_out 			=> data_out_local,
 		tc_char 			=> tc_char
 	);
 
@@ -64,43 +63,23 @@ begin
 		end if;
 	end process;
 
-	--process (my_uart_clock_out, reset)
-	---- process defining CURRENT state
-	--begin
-	--	if (reset = '0') then
-	--		current_state <= IDLE;
-	--	elsif (my_uart_clock_out='0' and my_uart_clock_out'event) then
-	--		current_state <= next_state;
-	--	end if;
-	--end process;
-
 	process (current_state, next_state, enable_reader, tc_char, data_out_local)
-	--process defining NEXT state
 	begin
 
-		--tag_read := (others(others =>'0'));		--intializing variable storing the tag being read
-
-		--data_out <= (others =>'0');		--??
 		data_debug <= data_out_local;
 		case current_state is
 			when IDLE =>
-				--data_out_contr <= (others =>'0');
-				--if (enable_reader = '1') then	-- OR it has to be unrelated to the enable signal?
+
 					if (tc_char = '1') then
 						next_state <= READ_TAG;
 					else
 						next_state <= IDLE;
 					end if;
-				--else
-				--	next_state <= IDLE;
-				--end if ;
 
 			when READ_TAG =>
 				next_state <= DONE;
-				--data_out_contr <= data_out_local(9 downto 2);		--data output only when data is good --- ONLY INTERESTING BITS --- CHECK
 
 			when DONE =>
-				--data_out_contr <= (others =>'0');
 				if (tc_char = '1') then
 					next_state <= DONE;
 				else
@@ -111,7 +90,6 @@ begin
 				next_state <= IDLE;
 		end case;
 	end process;
-	--uart_clock_out <= my_uart_clock_out;
-	data_out_contr <= data_out_local(9 downto 2);		--data output only when data is good --- ONLY INTERESTING BITS --- CHECK
+	data_out_contr <= data_out_local(9 downto 2);		-- output only interesting bits
 	tc_char_out <= tc_char;
 end architecture struct;

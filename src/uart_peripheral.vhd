@@ -67,7 +67,7 @@ architecture struct of uart_peripheral is
 		);
 	end component;
 
-	signal uart_clock, tc_char_int, enable_cnt, reset_cnt, shift_enable, shift_reset: std_logic;		-- maybe I can remove some signals
+	signal uart_clock, tc_char_int, enable_cnt, reset_cnt, shift_enable, shift_reset: std_logic;
 	signal c4_out : std_logic_vector(3 downto 0);
 
 begin
@@ -77,7 +77,6 @@ begin
 		port map(
 			clock		=> clock,
 			reset		=> reset,
-			--reset 		=> reset_cnt,
 			clear		=> reset_cnt,
 			end_val		=> divisor,
 			uart_clock 	=> uart_clock
@@ -120,5 +119,4 @@ begin
 			shift_reset			=> shift_reset
 		);
 	tc_char <= tc_char_int;
-	--clear <= tc_char_int;
 end architecture struct;

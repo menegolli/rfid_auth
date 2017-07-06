@@ -1,1 +1,2 @@
-This repo is so cool. Mauro will conquer the entire galaxy.
+
+The project is titled "rfid_auth" since it implements an access control device on a FPGA, making use of RFID technology and UART protocol. The RFID device reads the tag and writes its code on a UART line; this data is received by the FPGA and checked against the tag stored in memory: if there is a match, it simulates access granted, activating an RGB led and a buzzer; if otherwise there is a miss, a sine wave is produced by a speaker using and external Digital to Analog Converter.

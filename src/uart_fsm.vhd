@@ -22,7 +22,6 @@ architecture rtl of uart_fsm is
 
 	type state is (UART_IDLE, CLEAR_CLOCK, UART_DATA, AFTER_TX);
 	signal current_state, next_state: state;
-	--signal MY_ERROR: std_logic;
 
 begin
 
@@ -31,8 +30,6 @@ begin
 	begin
 		if (reset = '0') then
 			current_state <= UART_IDLE;
-			--current_state <= CLEAR_CLOCK;
-		--elsif (rising_edge(clock)) then
 		elsif (clock = '1' and clock'event) then
 			current_state <= next_state;
 		end if;
@@ -46,7 +43,6 @@ begin
 
 			when UART_IDLE =>
 				enable_cnt <= '0';
-				--reset_cnt <= '1';
 				reset_cnt <= '0';
 				shift_enable <= '0';
 				shift_reset <= '0';
@@ -70,7 +66,6 @@ begin
 				reset_cnt <= '1';
 				shift_enable <= '1';
 				shift_reset <= '1';
-				--MY_ERROR <= '0';
 				if (tc_char = '0') then		--terminal count for the transmission of a character
 					next_state <= UART_DATA;
 				else
@@ -80,7 +75,6 @@ begin
 
 			when AFTER_TX =>
 				enable_cnt <= '0';
-				--reset_cnt <= '0';
 				reset_cnt <= '1';
 				shift_enable <= '0';
 				shift_reset <= '1';
@@ -89,7 +83,6 @@ begin
 
 
 			when others =>
-				--enable_cnt <= '0';
 				reset_cnt <= '1';
 				reset_cnt <= '0';
 				shift_enable <= '0';

@@ -20,29 +20,19 @@ end entity countern;
 architecture rtl of countern is
 	signal count: std_logic_vector(n-1 downto 0);
 	signal tc_int :std_logic;
-	--signal count_var : std_logic_vector(n-1 downto 0);
 begin
-	--cnt_out <= std_logic_vector(to_unsigned(count, n));
 	cnt_out <= count;
 	tc <= tc_int;
 	process (clock, reset,enable)
-	--process (clock, reset,enable, tc_int)
 	begin
 		if (reset = '0') then
-		--if (reset = '0' or tc_int = '1') then
 			count <= (others => '0');
 		elsif enable = '1' then
 			if (clock = '1' and clock'event) then
-
-			--if (count = end_val) then
-			--	tc <= '1';
-				--	count <= (others => '0');
-				--else
 				if tc_int ='1' then
 					count <= (others => '0');
 				else
 					count <= count + '1';
-					--tc <= '0';
 				end if;
 			end if;
 		end if;

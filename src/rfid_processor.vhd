@@ -3,7 +3,6 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
---to perform casting	-- CHECK
 use ieee.numeric_std.all;
 
 entity rfid_processor is
@@ -66,12 +65,12 @@ architecture arch of rfid_processor is
 	signal check_ended :std_logic;
 	signal check_grant :std_logic;
 
-	signal next_check			    : std_logic;
-	signal next_check_fut     : std_logic;
-	signal continue_check     : std_logic;
-	signal already_pressed    : std_logic;
-	signal check_button_set   : std_logic;
-	signal check_button_reset : std_logic;
+	-- signal next_check			    : std_logic;
+	-- signal next_check_fut     : std_logic;
+	-- signal continue_check     : std_logic;
+	-- signal already_pressed    : std_logic;
+	-- signal check_button_set   : std_logic;
+	-- signal check_button_reset : std_logic;
 
 	component register_file is
 		generic(
@@ -116,7 +115,7 @@ begin
 	)
 	port map(
 		CLK			=> clk,
-		RESET		=> reset_n,	--or "clear" signal?
+		RESET		=> reset_n,
 		RD1			=> RD1,
 		WR			=> WR,
 		ADD_WR		=> ADD_WR,
@@ -293,7 +292,7 @@ begin
 	end process;
 
 
-	check_proc: process(current_state_check, enable_check_proc, index_check_tc, check_ok, next_check)
+	check_proc: process(current_state_check, enable_check_proc, index_check_tc, check_ok)
 	begin
 		case( current_state_check ) is
 			when RESETTING =>
